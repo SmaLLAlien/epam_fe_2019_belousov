@@ -1,0 +1,129 @@
+@import "variables";
+
+@mixin description {
+  &__author {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__image {
+    display: block;
+    align-self: center;
+    cursor: pointer;
+  }
+
+  &__name {
+    align-self: center;
+    margin-top: 10px;
+    text-transform: uppercase;
+    font: $mainFontSize * 1.125 source_sans_pro_bold, sans-serif;
+    font-weight: 700;
+    color: $fontNameColor;
+  }
+
+  &__header {
+    margin-top: 30px;
+    font: $mainFontSize * 3.125 source_sans_pro_light, sans-serif;
+    color: #5a5a5a;
+    text-align: center;
+    line-height: 0.98;
+  }
+}
+
+@mixin info {
+  &__header {
+    font: $mainFontSize * 1.75 source_sans_pro_light, sans-serif;
+    color: $textColor;
+  }
+
+  &__price {
+    display: block;
+    margin-top: 5px;
+    font: $mainFontSize * 1.75 source_sans_pro_bold, sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100px;
+  }
+}
+
+@mixin collection {
+  &__link {
+    box-sizing: border-box;
+    width: 100%;
+    height: 375px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: $fontNameColor;
+    cursor: pointer;
+    position: relative;
+  }
+
+  &__header {
+    text-transform: uppercase;
+    margin-top: 135px;
+  }
+
+  &__header--text-right {
+    margin-left: 40px;
+  }
+
+  &__text--text-right {
+    margin-left: 40px;
+  }
+
+  &__header--text-left {
+    margin-left: -40px;
+  }
+
+  &__text--text-left {
+    margin-left: -40px;
+  }
+
+  &__text {
+    text-transform: uppercase;
+    font-size: $mainFontSize * 0.875;
+  }
+}
+
+@mixin section {
+  width: 100%;
+  height: 375px;
+  display: flex;
+
+  &__collection {
+    width: 25.2%;
+    height: 100%;
+  }
+
+  .collection {
+    @include collection;
+  }
+
+  &__content {
+    width: 74.8%;
+    height: 100%;
+  }
+
+  &__info {
+    margin-top: 35px;
+
+    .info {
+      @include info;
+    }
+  }
+
+  &__description {
+    margin-top: -20px;
+
+    .description {
+      @include description;
+
+      &__header {
+        margin-top: 20px;
+      }
+    }
+  }
+}

@@ -1,0 +1,616 @@
+@import "variables";
+@import "mixins";
+@import "fonts";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-size: $mainFontSize;
+  width: 100%;
+  font-family: source_sans_pro_regular, sans-serif;
+  font-weight: bold;
+}
+
+.wrapper {
+  width: 1500px;
+  min-height: 100vh;
+  margin: 0 auto;
+
+  &__header {
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+  }
+}
+
+.header {
+  width: 1500px;
+  height: 667px;
+  position: relative;
+  background: url("../img/bg_header-min.png") no-repeat 43% 80%;
+  overflow: hidden;
+
+  &__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #e9eae2;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__triangle {
+    position: relative;
+    left: 30.5%;
+    z-index: -1;
+  }
+
+  .triangle {
+    display: flex;
+    width: 280px;
+    height: 235px;
+    position: relative;
+
+    &__back {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: url("../img/a-icon-pepper.svg") no-repeat 50.5% 30%;
+    }
+
+    &__left {
+      width: 50%;
+      background: linear-gradient(to top right, $triangleBackground 0%, $triangleBackground 50%, $triangleColor 50%, $triangleColor 100%);
+    }
+
+    &__right {
+      width: 50%;
+      background: linear-gradient(to top left, $triangleBackground 0%, $triangleBackground 50%, $triangleColor 50%, $triangleColor 100%);
+    }
+  }
+
+  &__info {
+    margin-left: 15%;
+    margin-top: -30px;
+  }
+
+  .info {
+    @include info;
+  }
+
+  &__description {
+    margin-top: -130px;
+    margin-left: 63.5%;
+    width: 280px;
+  }
+
+  .description {
+    @include description;
+  }
+}
+
+.navigation {
+  background: #e9eae2;
+  position: relative;
+
+  &__label {
+    position: absolute;
+    left: -100px;
+    color: black;
+    display: block;
+    width: 75px;
+    height: 75px;
+    background-size: cover;
+  }
+
+  input[type=radio] {
+    display: none;
+  }
+
+  &__menu {
+    width: 0;
+    transition: all 1s;
+    transition-property: width, transform;
+    overflow: hidden;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  input[type=radio]:checked + label {
+    background-color: $labelChecked;
+    display: none;
+  }
+
+  input[type=radio]:checked + label + label {
+    background-color: $labelChecked;
+    display: block;
+  }
+
+  &__label:nth-child(2) {
+    top: 55px;
+    background: url("../img/a-icon-home.svg") no-repeat center;
+  }
+
+  &__label:nth-child(3) {
+    top: 55px;
+    background: url("../img/a-icon-home.svg") no-repeat center;
+  }
+
+  &__label:nth-child(6) {
+    top: 130px;
+    background: url("../img/a-icon-ruby.svg") no-repeat center;
+  }
+
+  &__label:nth-child(7) {
+    top: 130px;
+    background: url("../img/a-icon-ruby.svg") no-repeat center;
+  }
+
+  &__label:nth-child(10) {
+    top: 205px;
+    background: url("../img/a-icon-search_nav.svg") no-repeat center;
+  }
+
+  &__label:nth-child(11) {
+    top: 205px;
+    background: url("../img/a-icon-search_nav.svg") no-repeat center;
+  }
+}
+
+.search {
+  width: 380px;
+  height: 667px;
+  background: url("../img/bg_menu.jpg") no-repeat center center;
+  background-size: cover;
+  visibility: hidden;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+
+  &__close {
+    position: absolute;
+    top: 35px;
+    right: 50px;
+    width: 20px;
+    height: 20px;
+    background: url("../img/a-icon-close.svg") no-repeat center;
+    background-size: cover;
+    z-index: 10;
+  }
+
+  &__header {
+    margin-top: 30px;
+    margin-left: -40px;
+    font: $mainFontSize * 1.125 source_sans_pro_bold, sans-serif;
+    color: #fff;
+    text-transform: uppercase;
+  }
+
+  &__field {
+    width: 74.4736%;
+    margin-top: 65px;
+    box-sizing: border-box;
+    position: relative;
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #fff;
+    }
+  }
+
+  &__icon {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 38px;
+    height: 38px;
+    background: #578b84 url("../img/a-icon-white.svg") no-repeat center center;
+  }
+}
+
+.warehouse,
+.rooms {
+  width: 380px;
+  height: 667px;
+  background: url("../img/bg_menu.jpg") no-repeat center center;
+  background-size: cover;
+  display: none;
+  flex-direction: column;
+
+  &__close {
+    position: absolute;
+    top: 35px;
+    right: 50px;
+    width: 20px;
+    height: 20px;
+    background: url("../img/a-icon-close.svg") no-repeat center;
+    background-size: cover;
+    z-index: 10;
+  }
+
+  &__header {
+    align-self: center;
+    margin-top: 30px;
+    margin-left: -40px;
+    font: $mainFontSize * 1.125 source_sans_pro_bold, sans-serif;
+    color: #fff;
+    text-transform: uppercase;
+  }
+
+  &__icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+  }
+
+  &__text {
+    font: $mainFontSize * 1.125 source_sans_pro_regular, sans-serif;
+    color: #fff;
+    font-weight: 500;
+  }
+}
+
+.warehouse {
+  &__content {
+    display: flex;
+    flex-flow: row wrap;
+    margin-left: 80px;
+    margin-top: 50px;
+    width: 240px;
+  }
+
+  &__icons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+    cursor: pointer;
+  }
+
+  &__icons:nth-child(3),
+  &__icons:nth-child(4) {
+    margin-top: 5px;
+  }
+
+  &__icons:nth-child(5),
+  &__icons:nth-child(6) {
+    margin-top: 10px;
+  }
+
+  &__icons:nth-child(7) {
+    margin-top: 10px;
+  }
+
+  &__icons:nth-child(odd) {
+    margin-right: 70px;
+  }
+
+  &__icons:nth-child(even) {
+    align-self: flex-end;
+  }
+}
+
+.rooms {
+  &__content {
+    margin-left: 80px;
+    margin-top: 50px;
+    width: 190px;
+  }
+
+  &__group {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__group:nth-child(2) {
+    margin-top: 10px;
+    margin-left: -10px;
+  }
+
+  &__group:nth-child(3) {
+    margin-top: 10px;
+    margin-left: -15px;
+  }
+
+  &__icons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+    cursor: pointer;
+  }
+}
+
+input[type=radio]:checked + label + label + .navigation__menu {
+  width: 380px;
+  display: flex;
+  transition-delay: 1s;
+}
+
+#home:checked + label + label + .navigation__menu > .warehouse {
+  width: 380px;
+  display: flex;
+  visibility: visible;
+  transition: visibility 1s;
+  transform: translateX(0);
+  transition-delay: 2s;
+}
+
+#ruby:checked + label + label + .navigation__menu > .rooms {
+  width: 380px;
+  display: flex;
+  visibility: visible;
+  transition: visibility 1s;
+  transform: translateX(0);
+  transition-delay: 2s;
+}
+
+#search:checked + label + label + .navigation__menu > .search {
+  width: 380px;
+  display: flex;
+  visibility: visible;
+  transition: visibility 1s;
+  transform: translateX(0);
+  transition-delay: 2s;
+}
+
+.teapot {
+  @include section;
+
+  .collection {
+    &__link {
+      background: $potsBackgroundColor url("../img/a-icon-teapot.svg") no-repeat 57% 38%;
+    }
+
+    &__link::after {
+      position: absolute;
+      content: "";
+      top: 0;
+      right: 0;
+      width: 10px;
+      height: 375px;
+      background:
+        linear-gradient(135deg, $potsBackgroundColor 5px, transparent 0) 0 5px,
+        linear-gradient(45deg, $potsBackgroundColor 5px, #fff 0) 0 5px;
+      background-position: left bottom;
+      background-repeat: repeat-y;
+      background-size: 10px 10px;
+    }
+  }
+
+  &__content {
+    background: $sectionContentBackground url("../img/chajn73-min.png") no-repeat 34% 180%;
+  }
+
+  &__info {
+    margin-left: 20px;
+  }
+
+  &__description {
+    margin-left: 62%;
+  }
+}
+
+.room {
+  width: 100%;
+  height: 375px;
+  background: url("../img/bg_kitchen.jpg") no-repeat center center;
+  background-size: cover;
+
+  &__circle {
+    width: 140px;
+    height: 140px;
+    position: relative;
+    top: 118px;
+    left: 30.5333333%;
+  }
+
+  .trademark {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    color: $fontNameColor;
+
+    &__icon {
+      width: 50px;
+      height: 50px;
+      background: url("../img/a-icon-ruby.svg") no-repeat center center;
+      margin-top: -10px;
+    }
+
+    &__text {
+      margin-top: -5px;
+      text-transform: uppercase;
+      color: $textColor;
+      font-size: $mainFontSize * 1.625;
+    }
+  }
+}
+
+.shakers {
+  @include section;
+
+  .collection {
+    &__link {
+      color: $shakersColor;
+      background: $shakerBackgroundColor url("../img/a-icon-shaker.svg") no-repeat 43% 38%;
+    }
+
+    &__link::after {
+      position: absolute;
+      content: "";
+      top: 0;
+      left: 0;
+      width: 10px;
+      height: 375px;
+      background:
+        linear-gradient(-135deg, $shakerBackgroundColor 5px, transparent 0) 0 5px,
+        linear-gradient(-45deg, $shakerBackgroundColor 5px, #fcfcfc 0) 0 5px;
+      background-position: left bottom;
+      background-repeat: repeat-y;
+      background-size: 10px 10px;
+    }
+  }
+
+  &__content {
+    order: -1;
+    background: #fcfcfc url("../img/1-min.png") no-repeat 39% 100%; //
+  }
+
+  &__info {
+    margin-left: 40px;
+  }
+
+  &__description {
+    margin-left: 65%;
+  }
+}
+
+.miski {
+  @include section;
+
+  .collection {
+    &__link {
+      color: $bowlsColor;
+      background: $bowlsBackgroundColor url("../img/a-icon-plate_orange.svg") no-repeat 57% 38%;
+      background-size: 120px 120px;
+    }
+
+    &__link::after {
+      position: absolute;
+      content: "";
+      top: 0;
+      right: 0;
+      width: 10px;
+      height: 375px;
+      background:
+        linear-gradient(135deg, $bowlsBackgroundColor 5px, transparent 0) 0 5px,
+        linear-gradient(45deg, $bowlsBackgroundColor 5px, #fff 0) 0 5px;
+      background-position: left bottom;
+      background-repeat: repeat-y;
+      background-size: 10px 10px;
+    }
+  }
+
+  &__content {
+    background: $sectionContentBackground url("../img/miski063-min.png") no-repeat 34% 100%;
+  }
+
+  &__info {
+    margin-left: 20px;
+  }
+
+  &__description {
+    margin-left: 62%;
+
+    .description {
+      &__header {
+        margin-left: 65px;
+        width: 280px;
+      }
+    }
+  }
+}
+
+.footer {
+  width: 100%;
+  height: 375px;
+  background: url("../img/bg_footer.jpg") no-repeat center center;
+  background-size: cover;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__content {
+    margin-left: 40px;
+    margin-top: 160px;
+  }
+
+  &__icons {
+    width: 415px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+
+  &__icon {
+    width: 90px;
+    height: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      display: block;
+      width: 70px;
+      height: 70px;
+    }
+  }
+
+  &__rights {
+    font: $mainFontSize * 1.5 source_sans_pro_regular, sans-serif;
+    color: $footerTextColor;
+  }
+
+  &__warehouse {
+    margin-right: 115px;
+    margin-top: 150px;
+  }
+
+  .warehouse-logo {
+    width: 70px;
+    height: 70px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &__picture {
+      display: flex;
+      flex-flow: row wrap;
+      margin-bottom: 10px;
+    }
+
+    &__square {
+      width: 35px;
+      height: 35px;
+
+      &--pink {
+        background: #ffc2a6;
+      }
+
+      &--blue {
+        background: #7dd5c9;
+      }
+
+      &--green {
+        background: #bfe79e;
+      }
+
+      &--transparent {
+        background: transparent;
+      }
+    }
+
+    &__text {
+      color: $footerTextColor;
+      font: $mainFontSize * 1.5 source_sans_pro_regular, sans-serif;
+    }
+  }
+}

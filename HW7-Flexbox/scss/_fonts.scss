@@ -1,0 +1,23 @@
+@font-face {
+  font-family: 'source_sans_pro_regular';
+  src:
+    url(../fonts/SourceSansPro-Regular.ttf) format("truetype"),
+    url(../fonts/sourcesanspro-regular.woff) format("woff"),
+    url(../fonts/sourcesanspro-regular.woff2) format("woff2");
+}
+
+@font-face {
+  font-family: 'source_sans_pro_light';
+  src:
+    url(../fonts/light/SourceSansPro-Light.ttf) format("truetype"),
+    url(../fonts/light/sourcesanspro-light-webfont.woff) format("woff"),
+    url(../fonts/light/sourcesanspro-light-webfont.woff2) format("woff2");
+}
+
+@font-face {
+  font-family: 'source_sans_pro_bold';
+  src:
+    url(../fonts/bold/SourceSansPro-Bold.ttf) format("truetype"),
+    url(../fonts/bold/sourcesanspro-bold-webfont.woff) format("woff"),
+    url(../fonts/bold/sourcesanspro-bold-webfont.woff2) format("woff2");
+}
