@@ -1501,6 +1501,10 @@ hr {
   font-family: "LucidaGrande-regular";
   src: url(../../fonts/lucida_regular/LucidaGrande.eot?) format("eot"), url(../../fonts/lucida_regular/LucidaGrande.ttf) format("truetype"), url(../../fonts/lucida_regular/LucidaGrande.woff) format("woff"), url(../../fonts/lucida_regular/LucidaGrande.woff2) format("woff2");
 }
+@font-face {
+  font-family: "LucidaGrande-light";
+  src: url(../../fonts/hindi-light/HindSiliguri-Light.eot?) format("eot"), url(../../fonts/hindi-light/HindSiliguri-Light.ttf) format("truetype"), url(../../fonts/hindi-light/HindSiliguri-Light.woff) format("woff"), url(../../fonts/hindi-light/HindSiliguri-Light.woff2) format("woff2");
+}
 html {
   font-size: 16px;
 }
@@ -1944,6 +1948,13 @@ body {
 }
 .latest-post__head {
   font: 1.25rem HindSiliguri-medium, sans-serif;
+  color: #4d4949;
+  text-decoration: none;
+  cursor: pointer;
+}
+.latest-post__head:hover {
+  text-decoration: none;
+  color: #4d4949;
 }
 .latest-post__text {
   font: 0.9375rem HindSiliguri-Regular, sans-serif;

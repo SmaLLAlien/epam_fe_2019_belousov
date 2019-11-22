@@ -265,6 +265,14 @@ body {
 
   &__head {
     font: 1.25rem HindSiliguri-medium, sans-serif;
+    color: $textColor;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  &__head:hover {
+    text-decoration: none;
+    color: $textColor;
   }
 
   &__text {
