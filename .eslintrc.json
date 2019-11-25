@@ -12,9 +12,10 @@
     "jest": true
   },
   "rules": {
+    
     "no-console":
     [
-      "error",
+      "warn",
       {
         "allow": ["warn", "error"]
       }
@@ -102,7 +103,6 @@
       }
     ],
     "no-negated-condition": "error",
-    "no-nested-ternary": "error",
     "no-tabs": "error",
     "no-trailing-spaces": "error",
     "no-unneeded-ternary": "error",
