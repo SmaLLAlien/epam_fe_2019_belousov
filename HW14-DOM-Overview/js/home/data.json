@@ -1,0 +1,105 @@
+[
+  {
+    "header": {
+      "contentHeader": "Ideas and perspectives you won’t find anywhere else.",
+      "contentParagraph": "BlogWorld taps into the brains of the world’s most insightful writers, thinkers, and storytellers to bring you the smartest takes on topics that matter. So whatever your interest, you can always find fresh thinking and unique perspectives."
+    }
+  },
+  {
+    "aboutUs": {
+      "aboutHeader": "About us",
+      "aboutParagraph": "This is who we are - or at least who we strive to be…",
+      "videoAboutUsSrc": "img/home/videoplayback.mp4",
+      "videoAboutUsPoster": "img/home/About_picture.png",
+      "description": {
+        "green": "Typography",
+        "blue": "Icon set",
+        "red": "Accurate"
+      }
+    }
+  },
+  {
+    "latestPosts": {
+      "postHeader": "Latest posts",
+      "postParagraph": "Information is a source of learning. But unless it is organized, processed and available to the right people",
+      "posts": {
+        "post1": {
+          "head": "In the Future We Will All Live in Star Wars",
+          "text": "The thing you’re doing now, reading prose on a screen, is going out of fashion. The defining narrative of our online moment concerns the decline of text, and the exploding reach and power of audio and video…",
+          "data": "20 oct, 2019",
+          "time": "10 min read",
+          "imgSrc": "img/home/a-icon-comment.svg",
+          "commentsNumber": "11"
+        },
+        "post2": {
+          "head": "Rubik’s Cube? No, Robotics and AI are…",
+          "text": "In other words, I will try to de-hype the crowd about the recent development in robotics. Concretely, OpenAI has claimed some pretty amazing results with learning to solve the Rubik’s cube with a robotic hand…",
+          "data": "11 oct, 2019",
+          "time": "7 min read",
+          "imgSrc": "img/home/a-icon-comment.svg",
+          "commentsNumber": "19"
+        },
+        "post3": {
+          "head": "How the Internet of Things will Transfo…",
+          "text": "The Internet of Things (IoT) promises to be the most important technological development for consumers since the advent of the smartphone. Experts believe that this collection of internet-connected technolog…",
+          "data": "28 sep, 2019",
+          "time": "16 min read",
+          "imgSrc": "img/home/a-icon-comment.svg",
+          "commentsNumber": "41"
+        }
+      }
+    }
+  },
+  {
+    "latestPortfolio": {
+      "postHeader": "Latest portfolio",
+      "postParagraph": "Put there articles successfully special warrant submit agree what along then",
+      "slider": {
+        "slide1": {
+          "head": "Art Ocean",
+          "text": "Photography, art, nature"
+        },
+        "slide2": {
+          "head": "City guide",
+          "text": "Photography, city, way"
+        },
+        "slide3": {
+          "head": "Mountains",
+          "text": "Art, hiking"
+        }
+      }
+    }
+  },
+  {
+    "testmonials": {
+      "header": "Testimonials",
+      "quote": "We move at a fast pace. I’m always working on something. I am excited about it!",
+      "author": "Martin Oda",
+      "work": "Product desgner"
+    }
+  },
+  {
+    "contacts": {
+      "header": "Contact us",
+      "paragraph": "Put there articles successfully special warrant submit agree what along then",
+      "iconFacebook": "img/home/a-icon-facebook.svg",
+      "iconInsta": "img/home/a-icon-instagram.svg",
+      "iconBasket": "img/home/a-icon-dribbble.svg",
+      "roadmap": {
+        "header": "What will be next step?",
+        "item1": {
+          "top": "1. We’ll prepare a proposal",
+          "text": "Required scope, timeline and apr. price will be included if you provide us with detail information about a project."
+        },
+        "item2": {
+          "top": "2. Together we discuss it",
+          "text": "Let’s get acquainted and discuss all the possible variant and options. Google Hangouts or Skype usually wirks great."
+        },
+        "item3": {
+          "top": "3. Let’s start building",
+          "text": "When the contract is signed and all goals are set we can start the first sprint."
+        }
+      }
+    }
+  }
+]
