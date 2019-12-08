@@ -11,13 +11,13 @@ function getData() {
   }
 }
 
+const fragmentHeader = document.createDocumentFragment();
+
 const wrapper = document.getElementsByClassName('wrapper')[0];
 
 const header = document.createElement('header');
 header.classList.add('header');
 header.id = 'home';
-
-wrapper.insertAdjacentElement('afterbegin', header);
 
 const headerTop = document.createElement('div');
 headerTop.classList.add('header__top');
@@ -106,12 +106,16 @@ contentMoreButton.classList.add('content__more');
 contentButtons.append(contentMoreButton);
 contentMoreButton.textContent = 'Learn more';
 
+fragmentHeader.append(header);
+wrapper.append(fragmentHeader);
+
 /** ******************************************************************************/
 // ABOUT US
 
+const fragmentAboutUs = fragmentHeader.cloneNode();
+
 const sectionAboutUs = document.createElement('section');
 sectionAboutUs.classList.add('about');
-header.insertAdjacentElement('afterend', sectionAboutUs);
 sectionAboutUs.id = 'aboutUs';
 
 const aboutTop = document.createElement('div');
@@ -148,24 +152,18 @@ const aboutIcons = document.createElement('div');
 aboutIcons.classList.add('about__icons');
 rowAbout.append(aboutIcons);
 
-for (let i = 0; i < 3; i++) {
+const iconsArrayFromJson = data[1].aboutUs.desc;
+
+iconsArrayFromJson.forEach((element) => {
   const aboutIcon = document.createElement('div');
   aboutIcon.classList.add('about__icon');
+  aboutIcon.classList.add(element.class);
   const p = document.createElement('p');
   p.classList.add('about__description');
+  p.textContent = element.text;
   aboutIcon.append(p);
   aboutIcons.append(aboutIcon);
-}
-
-const aboutIconArray = [...document.getElementsByClassName('about__icon')];
-aboutIconArray[0].classList.add('about__icon--green');
-aboutIconArray[1].classList.add('about__icon--blue');
-aboutIconArray[2].classList.add('about__icon--red');
-
-const aboutIconDescArray = [...document.getElementsByClassName('about__description')];
-aboutIconDescArray[0].textContent = data[1].aboutUs.description.green;
-aboutIconDescArray[1].textContent = data[1].aboutUs.description.blue;
-aboutIconDescArray[2].textContent = data[1].aboutUs.description.red;
+});
 
 const aboutVideo = document.createElement('div');
 aboutVideo.classList.add('about__video');
@@ -177,12 +175,16 @@ videoAboutUs.controls = true;
 videoAboutUs.poster = data[1].aboutUs.videoAboutUsPoster;
 aboutVideo.append(videoAboutUs);
 
+fragmentAboutUs.append(sectionAboutUs);
+wrapper.append(fragmentAboutUs);
+
 /** ******************************************************************************/
 // LATEST POSTS
 
+const fragmentLatestPost = fragmentHeader.cloneNode();
+
 const sectionLatestPost = document.createElement('section');
 sectionLatestPost.classList.add('latest-post');
-sectionAboutUs.insertAdjacentElement('afterend', sectionLatestPost);
 sectionLatestPost.id = 'latestPost';
 
 const latestPostTop = document.createElement('div');
@@ -216,27 +218,46 @@ latestPostPostsRow.classList.add('row');
 latestPostPostsContainer.insertAdjacentElement('afterbegin', latestPostPostsRow);
 
 // LATEST POSTS POST
-for (let i = 0; i < 3; i++) {
+const postsArrayFromJson = data[2].latestPosts.posts;
+
+postsArrayFromJson.forEach((post) => {
   const latestPostPost = document.createElement('div');
   latestPostPost.classList.add('latest-post__post');
 
   const latestPostPostPreview = document.createElement('div');
+  latestPostPostPreview.style.background = `url("${post.previewImg}") no-repeat center center/cover`;
   latestPostPostPreview.classList.add('latest-post__preview');
 
+  const latestPostPostDescription = makePostDescription(post);
+
+  latestPostPost.append(latestPostPostPreview);
+  latestPostPost.append(latestPostPostDescription);
+  latestPostPostsRow.append(latestPostPost);
+});
+
+function makePostDescription(post) {
   const latestPostPostDescription = document.createElement('div');
   latestPostPostDescription.classList.add('latest-post__description');
 
   const latestPostPostHead = document.createElement('a');
   latestPostPostHead.classList.add('latest-post__head');
+  latestPostPostHead.textContent = post.head;
   latestPostPostDescription.append(latestPostPostHead);
 
   const latestPostPostText = document.createElement('p');
   latestPostPostText.classList.add('latest-post__text');
+  latestPostPostText.textContent = post.text;
   latestPostPostDescription.append(latestPostPostText);
 
+  const latestPostPostInfo = makePostInfo(post);
+  latestPostPostDescription.append(latestPostPostInfo);
+
+  return latestPostPostDescription;
+}
+
+function makePostInfo(post) {
   const latestPostPostInfo = document.createElement('div');
   latestPostPostInfo.classList.add('latest-post__info');
-  latestPostPostDescription.append(latestPostPostInfo);
 
   const info = document.createElement('div');
   info.classList.add('info');
@@ -244,66 +265,53 @@ for (let i = 0; i < 3; i++) {
 
   const infoDate = document.createElement('div');
   infoDate.classList.add('info__date');
+  infoDate.textContent = post.data;
   info.append(infoDate);
 
-  const infoTime = document.createElement('div');
-  infoTime.classList.add('info__time');
+  const infoTime = makeInfoTime(post);
   info.append(infoTime);
 
+  const infoComments = makeInfoComments(post);
+  info.append(infoComments);
+
+  return latestPostPostInfo;
+}
+
+function makeInfoTime(post) {
+  const infoTime = document.createElement('div');
+  infoTime.classList.add('info__time');
+  infoTime.textContent = post.time;
+
+  return infoTime;
+}
+
+function makeInfoComments(post) {
   const infoComments = document.createElement('div');
   infoComments.classList.add('info__comments');
-  info.append(infoComments);
 
   const imgIcon = document.createElement('img');
   imgIcon.classList.add('info__icon');
-  imgIcon.src = '';
+  imgIcon.src = post.imgSrc;
   imgIcon.alt = 'icon-comments';
   infoComments.append(imgIcon);
 
   const infoSpan = document.createElement('span');
+  infoSpan.textContent = post.commentsNumber;
   infoComments.append(infoSpan);
 
-  latestPostPost.append(latestPostPostPreview);
-  latestPostPost.append(latestPostPostDescription);
-  latestPostPostsRow.append(latestPostPost);
+  return infoComments;
 }
 
-const postsArrayHead = [...latestPostPosts.getElementsByClassName('latest-post__head')];
-postsArrayHead[0].textContent = data[2].latestPosts.posts.post1.head;
-postsArrayHead[1].textContent = data[2].latestPosts.posts.post2.head;
-postsArrayHead[2].textContent = data[2].latestPosts.posts.post3.head;
-
-const postsArrayText = [...latestPostPosts.getElementsByClassName('latest-post__text')];
-postsArrayText[0].textContent = data[2].latestPosts.posts.post1.text;
-postsArrayText[1].textContent = data[2].latestPosts.posts.post2.text;
-postsArrayText[2].textContent = data[2].latestPosts.posts.post3.text;
-
-const postsArrayDate = [...latestPostPosts.getElementsByClassName('info__date')];
-postsArrayDate[0].textContent = data[2].latestPosts.posts.post1.date;
-postsArrayDate[1].textContent = data[2].latestPosts.posts.post2.date;
-postsArrayDate[2].textContent = data[2].latestPosts.posts.post3.date;
-
-const postsArrayTime = [...latestPostPosts.getElementsByClassName('info__time')];
-postsArrayTime[0].textContent = data[2].latestPosts.posts.post1.time;
-postsArrayTime[1].textContent = data[2].latestPosts.posts.post2.time;
-postsArrayTime[2].textContent = data[2].latestPosts.posts.post3.time;
-
-const postsArrayImg = [...latestPostPosts.getElementsByClassName('info__icon')];
-postsArrayImg[0].src = data[2].latestPosts.posts.post1.imgSrc;
-postsArrayImg[1].src = data[2].latestPosts.posts.post2.imgSrc;
-postsArrayImg[2].src = data[2].latestPosts.posts.post3.imgSrc;
-
-const postsArrayCommentsNumber = [...latestPostPosts.querySelectorAll('.info__icon + span')];
-postsArrayCommentsNumber[0].textContent = data[2].latestPosts.posts.post1.commentsNumber;
-postsArrayCommentsNumber[1].textContent = data[2].latestPosts.posts.post2.commentsNumber;
-postsArrayCommentsNumber[2].textContent = data[2].latestPosts.posts.post3.commentsNumber;
+fragmentLatestPost.append(sectionLatestPost);
+wrapper.append(fragmentLatestPost);
 
 /** ******************************************************************************/
 // LATEST PORTFOLIO
 
+const fragmentLatestPortfolio = fragmentHeader.cloneNode();
+
 const sectionLatestPortfolio = document.createElement('section');
 sectionLatestPortfolio.classList.add('latest-portfolio');
-sectionLatestPost.insertAdjacentElement('afterend', sectionLatestPortfolio);
 sectionLatestPortfolio.id = 'portfolio';
 
 const latestPortfolioTop = document.createElement('div');
@@ -341,34 +349,28 @@ const portfolioSlider = document.createElement('div');
 portfolioSlider.classList.add('slider');
 latestPortfolioRow.append(portfolioSlider);
 
-for (let i = 0; i < 3; i++) {
+const sliderLatestPortfolioArray = data[3].latestPortfolio.slider;
+sliderLatestPortfolioArray.forEach((slide) => {
   const sliderSlide = document.createElement('div');
   sliderSlide.classList.add('slider__slide');
 
   const sliderPreview = document.createElement('div');
+  sliderPreview.style.background = `url("${slide.previewImg}") no-repeat center center/cover`;
   sliderPreview.classList.add('slider__preview');
 
   const sliderHead = document.createElement('div');
+  sliderHead.textContent = slide.head;
   sliderHead.classList.add('slider__head');
 
   const sliderText = document.createElement('div');
+  sliderText.textContent = slide.text;
   sliderText.classList.add('slider__text');
 
   sliderPreview.append(sliderHead);
   sliderPreview.append(sliderText);
   sliderSlide.append(sliderPreview);
   portfolioSlider.append(sliderSlide);
-}
-
-const latestPortfolioSlidesHeadArray = [...portfolioSliderContainer.getElementsByClassName('slider__head')];
-latestPortfolioSlidesHeadArray[0].textContent = data[3].latestPortfolio.slider.slide1.head;
-latestPortfolioSlidesHeadArray[1].textContent = data[3].latestPortfolio.slider.slide2.head;
-latestPortfolioSlidesHeadArray[2].textContent = data[3].latestPortfolio.slider.slide3.head;
-
-const latestPortfolioSlidesTextArray = [...portfolioSliderContainer.getElementsByClassName('slider__text')];
-latestPortfolioSlidesTextArray[0].textContent = data[3].latestPortfolio.slider.slide1.text;
-latestPortfolioSlidesTextArray[1].textContent = data[3].latestPortfolio.slider.slide2.text;
-latestPortfolioSlidesTextArray[2].textContent = data[3].latestPortfolio.slider.slide3.text;
+});
 
 // PORTFOLIO SLIDER CONTROLS
 const portfolioSliderControls = document.createElement('div');
@@ -396,12 +398,15 @@ portfolioSliderControlsButton.textContent = 'See all works';
 portfolioSliderControlsButton.classList.add('controls__button');
 portfolioSliderControlsInner.append(portfolioSliderControlsButton);
 
+fragmentLatestPortfolio.append(sectionLatestPortfolio);
+wrapper.append(fragmentLatestPortfolio);
+
 /** ******************************************************************************/
 // TESTMONIALS
 
+const fragmentTestmonials = fragmentHeader.cloneNode();
 const sectionTestmonials = document.createElement('section');
 sectionTestmonials.classList.add('testimonials');
-sectionLatestPortfolio.insertAdjacentElement('afterend', sectionTestmonials);
 
 const testmonialsTop = document.createElement('div');
 testmonialsTop.classList.add('testimonials__top');
@@ -469,12 +474,17 @@ const sliderNext = document.createElement('div');
 sliderNext.classList.add('next');
 testmonialsSliderNext.append(sliderNext);
 
+fragmentTestmonials.append(sectionTestmonials);
+wrapper.append(fragmentTestmonials);
+
 /** ******************************************************************************/
 // CONTACT US
 
+const fragmentContactUs = fragmentHeader.cloneNode();
+
 const sectionContactUs = document.createElement('section');
 sectionContactUs.classList.add('contacts');
-sectionTestmonials.insertAdjacentElement('afterend', sectionContactUs);
+
 sectionContactUs.id = 'contacts';
 
 const contactUsContainer = document.createElement('div');
@@ -573,38 +583,38 @@ const informationRoadmapTimeline = document.createElement('div');
 informationRoadmapTimeline.classList.add('roadmap__timeline');
 informationRoadmap.append(informationRoadmapTimeline);
 
-for (let i = 0; i < 3; i++) {
+const roadmapStepsArray = data[5].contacts.roadmap;
+roadmapStepsArray.forEach((step) => {
   const roadMapItem = document.createElement('div');
   roadMapItem.classList.add('roadmap__item');
 
+  const outerCircle = circles();
+
+  const top = document.createElement('div');
+  top.classList.add('roadmap__top');
+  top.textContent = step.top;
+
+  const next = document.createElement('div');
+  next.classList.add('roadmap__text');
+  next.textContent = step.text;
+
+  // outerCircle.append(innerCircle);
+  roadMapItem.append(outerCircle);
+  roadMapItem.append(top);
+  roadMapItem.append(next);
+  informationRoadmapTimeline.append(roadMapItem);
+});
+
+function circles() {
   const outerCircle = document.createElement('div');
   outerCircle.classList.add('roadmap__outer-circle');
 
   const innerCircle = document.createElement('div');
   innerCircle.classList.add('roadmap__inner-circle');
 
-  const top = document.createElement('div');
-  top.classList.add('roadmap__top');
-
-  const next = document.createElement('div');
-  next.classList.add('roadmap__text');
-
   outerCircle.append(innerCircle);
-  roadMapItem.append(outerCircle);
-  roadMapItem.append(top);
-  roadMapItem.append(next);
-  informationRoadmapTimeline.append(roadMapItem);
+  return outerCircle;
 }
-
-const roadMapTopArray = [...informationRoadmapTimeline.getElementsByClassName('roadmap__top')];
-roadMapTopArray[0].textContent = data[5].contacts.roadmap.item1.top;
-roadMapTopArray[1].textContent = data[5].contacts.roadmap.item2.top;
-roadMapTopArray[2].textContent = data[5].contacts.roadmap.item3.top;
-
-const roadMapTextArray = [...informationRoadmapTimeline.getElementsByClassName('roadmap__text')];
-roadMapTextArray[0].textContent = data[5].contacts.roadmap.item1.text;
-roadMapTextArray[1].textContent = data[5].contacts.roadmap.item2.text;
-roadMapTextArray[2].textContent = data[5].contacts.roadmap.item3.text;
 
 // CARD
 
@@ -707,8 +717,13 @@ const informationCardMap = document.createElement('div');
 informationCardMap.classList.add('card__map');
 informationCardContent.append(informationCardMap);
 
+fragmentContactUs.append(sectionContactUs);
+wrapper.append(fragmentContactUs);
+
 /** ******************************************************************************/
 // TO HOME
+
+const fragmentToHome = fragmentHeader.cloneNode();
 
 const toHome = document.createElement('div');
 toHome.classList.add('to-home');
@@ -732,4 +747,8 @@ toHomeTriangle.append(toHomeTriangleRight);
 toHome.append(toHomeLink);
 toHomeLink.append(toHomeTriangle);
 
-document.body.append(toHome);
+fragmentToHome.append(toHome);
+document.body.append(fragmentToHome);
+
+const footer = document.querySelector('.footer');
+wrapper.append(footer);

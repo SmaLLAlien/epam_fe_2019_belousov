@@ -11,14 +11,15 @@ function getData() {
   }
 }
 
-const header = document.getElementById('home');
+const wrapper = document.getElementsByClassName('wrapper')[0];
 
 /** ******************************************************************************/
 // SECTION BLOG
 
+const fragmentHeader = document.createDocumentFragment();
 const sectionBlog = document.createElement('section');
 sectionBlog.classList.add('blog');
-header.insertAdjacentElement('afterend', sectionBlog);
+// header.insertAdjacentElement('afterend', sectionBlog);
 sectionBlog.id = 'blog';
 
 const blogTop = document.createElement('div');
@@ -54,9 +55,10 @@ blogSearchInput.placeholder = 'Search by author';
 
 /** ******************************************************************************/
 // SECTION POSTS
-
+const fragmentPosts = fragmentHeader.cloneNode();
 const sectionPosts = document.createElement('section');
-sectionBlog.insertAdjacentElement('afterend', sectionPosts);
+// sectionBlog.insertAdjacentElement('afterend', sectionPosts);
+fragmentPosts.append(sectionPosts);
 sectionPosts.id = 'posts';
 
 const containerPosts = document.createElement('div');
@@ -71,18 +73,73 @@ const sectionPostsPosts = document.createElement('div');
 sectionPostsPosts.classList.add('posts');
 rowPosts.append(sectionPostsPosts);
 
-for (let i = 0; i < 4; i++) {
+const postsOfArray = data[1].psts;
+
+postsOfArray.forEach((postJson) => {
   const post = document.createElement('div');
   post.classList.add('post');
 
+  const postPreview = makePreview();
+  const postDescription = makePostDescription(postJson);
+  const objParamToCheckPostType = {postJson, postPreview, postDescription,post};
+  checkpostType(objParamToCheckPostType);
+
+  post.append(postPreview);
+  post.append(postDescription);
+  sectionPostsPosts.append(post);
+});
+
+function makePreview() {
   const postPreview = document.createElement('div');
   postPreview.classList.add('post__preview');
+  return postPreview;
+}
 
-  const postDescription = document.createElement('div');
-  postDescription.classList.add('post__description');
+function checkpostType({postJson, postPreview, postDescription, post}) {
+  // check what the type of post and add needed class and some elements such as video or music
+  if (postJson.type === 'video') {
+    post.classList.add('post--video');
+    const videoPost = makeVideoPlayer(postJson);
+    postPreview.append(videoPost);
+  }
+  if (postJson.type === 'audio') {
+    post.classList.add('post--audio');
+    const postDescriptionParagraphTopMusicContainer = makeMusicPlayer(postJson);
+    postDescription.querySelector('.post__top').insertAdjacentElement('afterend', postDescriptionParagraphTopMusicContainer);
+  }
 
-  // POST DESCRIPTION
-  // POST HEADER
+  if (postJson.type === 'pic') {
+    post.classList.add('post--pic');
+  }
+
+  if (postJson.type === 'txt') {
+    post.classList.add('post--txt');
+  }
+}
+
+function makeMusicPlayer(postJson) {
+  // if type music player
+  const postDescriptionParagraphTopMusicContainer = document.createElement('div');
+  postDescriptionParagraphTopMusicContainer.classList.add('post__audio');
+
+  const postDescriptionParagraphTopMusicContainerAudio = document.createElement('audio');
+  postDescriptionParagraphTopMusicContainerAudio.controls = true;
+  postDescriptionParagraphTopMusicContainerAudio.src = postJson.src;
+  postDescriptionParagraphTopMusicContainer.append(postDescriptionParagraphTopMusicContainerAudio);
+  return postDescriptionParagraphTopMusicContainer;
+}
+
+function makeVideoPlayer(postJson) {
+  // if type video player
+  const videoPost = document.createElement('video');
+  videoPost.src = postJson.src;
+  videoPost.poster = postJson.poster;
+  videoPost.controls = true;
+  return videoPost;
+}
+
+function makePostDescriptionHeader(postJson) {
+  // add user photo
   const postDescriptionHeader = document.createElement('div');
   postDescriptionHeader.classList.add('post__header');
 
@@ -90,34 +147,53 @@ for (let i = 0; i < 4; i++) {
   postDescriptionHeaderPhoto.classList.add('post__photo');
 
   const postDescriptionHeaderPhotoImg = document.createElement('img');
+  postDescriptionHeaderPhotoImg.src = postJson.photo;
   postDescriptionHeaderPhoto.append(postDescriptionHeaderPhotoImg);
   postDescriptionHeader.append(postDescriptionHeaderPhoto);
+  return postDescriptionHeader;
+}
 
-  // POST INFO
+function makePostDescriptionHeaderInfo(postJson) {
+  // add author name
   const postDescriptionHeaderInfo = document.createElement('div');
   postDescriptionHeaderInfo.classList.add('post__info');
-  postDescriptionHeader.append(postDescriptionHeaderInfo);
 
   const postDescriptionHeaderInfoName = document.createElement('div');
   postDescriptionHeaderInfoName.classList.add('post__name');
+  postDescriptionHeaderInfoName.textContent = postJson.name;
   postDescriptionHeaderInfo.append(postDescriptionHeaderInfoName);
+  return postDescriptionHeaderInfo;
+}
 
+function makeInfoRates(postJson) {
+  // add info about post: date, time, call func comments
   const postDescriptionHeaderInfoRates = document.createElement('div');
   postDescriptionHeaderInfoRates.classList.add('post__rates');
-  postDescriptionHeaderInfo.append(postDescriptionHeaderInfoRates);
 
   // RATES
   const postDescriptionHeaderInfoRatesDate = document.createElement('div');
   postDescriptionHeaderInfoRatesDate.classList.add('post__date');
+  postDescriptionHeaderInfoRatesDate.textContent = postJson.date;
   postDescriptionHeaderInfoRates.append(postDescriptionHeaderInfoRatesDate);
 
   const postDescriptionHeaderInfoRatesTime = document.createElement('div');
   postDescriptionHeaderInfoRatesTime.classList.add('post__time');
+  postDescriptionHeaderInfoRatesTime.textContent = postJson.time;
   postDescriptionHeaderInfoRates.append(postDescriptionHeaderInfoRatesTime);
 
+  const postDescriptionHeaderInfoRatesComments = makePostDescriptionHeaderInfoRatesComments(postJson);
+  postDescriptionHeaderInfoRates.append(postDescriptionHeaderInfoRatesComments);
+
+  const postDescriptionHeaderInfoRatesStars = postDescriptionHeaderInfoRatesStar(postJson);
+  postDescriptionHeaderInfoRates.append(postDescriptionHeaderInfoRatesStars);
+
+  return postDescriptionHeaderInfoRates;
+}
+
+function makePostDescriptionHeaderInfoRatesComments(postJson) {
+  // add number of comments
   const postDescriptionHeaderInfoRatesComments = document.createElement('div');
   postDescriptionHeaderInfoRatesComments.classList.add('post__comments');
-  postDescriptionHeaderInfoRates.append(postDescriptionHeaderInfoRatesComments);
 
   const postDescriptionHeaderInfoRatesCommentsImg = document.createElement('img');
   postDescriptionHeaderInfoRatesCommentsImg.classList.add('post__icon');
@@ -126,131 +202,77 @@ for (let i = 0; i < 4; i++) {
   postDescriptionHeaderInfoRatesComments.append(postDescriptionHeaderInfoRatesCommentsImg);
 
   const postDescriptionHeaderInfoRatesCommentsCount = document.createElement('span');
+  postDescriptionHeaderInfoRatesCommentsCount.textContent = postJson.commentsCount;
   postDescriptionHeaderInfoRatesComments.append(postDescriptionHeaderInfoRatesCommentsCount);
 
+  return postDescriptionHeaderInfoRatesComments;
+}
+
+function postDescriptionHeaderInfoRatesStar(postJson) {
+  // add number of post stars
   const postDescriptionHeaderInfoRatesStars = document.createElement('div');
   postDescriptionHeaderInfoRatesStars.classList.add('post__stars');
-  postDescriptionHeaderInfoRates.append(postDescriptionHeaderInfoRatesStars);
 
   for (let i = 0; i < 5; i++) {
     const img = document.createElement('img');
     img.alt = 'star';
+    img.src = postJson.stars.split(',')[i];
     postDescriptionHeaderInfoRatesStars.append(img);
   }
 
-  // POST PARAGRAPH
+  return postDescriptionHeaderInfoRatesStars;
+}
+
+function makeDescriptionParagraph(postJson) {
+  // add post paragraph header and main text
   const postDescriptionParagraph = document.createElement('div');
   postDescriptionParagraph.classList.add('post__paragraph');
 
   const postDescriptionParagraphTop = document.createElement('div');
   postDescriptionParagraphTop.classList.add('post__top');
+  postDescriptionParagraphTop.textContent = postJson.paragraphTop;
   postDescriptionParagraph.append(postDescriptionParagraphTop);
-
-  if (i === 2) {
-    const postDescriptionParagraphTopMusicContainer = document.createElement('div');
-    postDescriptionParagraphTopMusicContainer.classList.add('post__audio');
-
-    const postDescriptionParagraphTopMusicContainerAudio = document.createElement('audio');
-    postDescriptionParagraphTopMusicContainerAudio.controls = true;
-    postDescriptionParagraphTopMusicContainerAudio.src = data[1].posts.postAudio.src;
-    postDescriptionParagraphTopMusicContainer.append(postDescriptionParagraphTopMusicContainerAudio);
-
-    postDescriptionParagraphTop.insertAdjacentElement('afterend', postDescriptionParagraphTopMusicContainer);
-  }
 
   const postDescriptionParagraphText = document.createElement('div');
   postDescriptionParagraphText.classList.add('post__text');
+  postDescriptionParagraphText.textContent = postJson.text;
   postDescriptionParagraph.append(postDescriptionParagraphText);
 
+  return postDescriptionParagraph;
+}
+
+function makePostDescriptionButton() {
+  // add button to read more
   const postDescriptionButton = document.createElement('button');
   postDescriptionButton.classList.add('post__button');
   postDescriptionButton.textContent = 'Read more';
 
-  post.append(postPreview);
-  post.append(postDescription);
-  postDescription.append(postDescriptionHeader);
-  postDescription.append(postDescriptionParagraph);
-  postDescription.append(postDescriptionButton);
-  sectionPostsPosts.insertAdjacentElement('afterbegin', post);
+  return postDescriptionButton;
 }
 
-const postsArray = [...sectionPostsPosts.querySelectorAll('.post')];
-postsArray[0].classList.add('post--video');
-postsArray[1].classList.add('post--audio');
-postsArray[2].classList.add('post--pic');
-postsArray[3].classList.add('post--txt');
+function makePostDescription(postJson) {
+  const postDescription = document.createElement('div');
+  postDescription.classList.add('post__description');
 
-const poststPreviewArray = [...sectionPostsPosts.querySelectorAll('.post__preview')];
-const videoPost = document.createElement('video');
-videoPost.src = data[1].posts.postVideo.src;
-videoPost.poster = data[1].posts.postVideo.poster;
-videoPost.controls = true;
-poststPreviewArray[0].append(videoPost);
+  const postDescriptionHeader = makePostDescriptionHeader(postJson);
+  postDescription.append(postDescriptionHeader);
 
-const postsPhotoArray = [...sectionPostsPosts.querySelectorAll('.post__photo > img')];
-postsPhotoArray.forEach((img) => img.alt = 'author');
-postsPhotoArray[0].src = data[1].posts.postVideo.photo;
-postsPhotoArray[1].src = data[1].posts.postAudio.photo;
-postsPhotoArray[2].src = data[1].posts.postPic.photo;
-postsPhotoArray[3].src = data[1].posts.postText.photo;
+  // POST INFO
+  const postDescriptionHeaderInfo = makePostDescriptionHeaderInfo(postJson);
+  postDescriptionHeader.append(postDescriptionHeaderInfo);
 
-const postsNameArray = [...sectionPostsPosts.querySelectorAll('.post__name')];
-postsNameArray[0].textContent = data[1].posts.postVideo.name;
-postsNameArray[1].textContent = data[1].posts.postAudio.name;
-postsNameArray[2].textContent = data[1].posts.postPic.name;
-postsNameArray[3].textContent = data[1].posts.postText.name;
+  const postDescriptionHeaderInfoRates = makeInfoRates(postJson);
+  postDescriptionHeaderInfo.append(postDescriptionHeaderInfoRates);
 
-const postsDateArray = [...sectionPostsPosts.querySelectorAll('.post__date')];
-postsDateArray[0].textContent = data[1].posts.postVideo.date;
-postsDateArray[1].textContent = data[1].posts.postAudio.date;
-postsDateArray[2].textContent = data[1].posts.postPic.date;
-postsDateArray[3].textContent = data[1].posts.postText.date;
+  // POST PARAGRAPH
+  const postDescriptionParagraph = makeDescriptionParagraph(postJson);
+  postDescription.append(postDescriptionParagraph);
 
-const postsTimeArray = [...sectionPostsPosts.querySelectorAll('.post__time')];
-postsTimeArray[0].textContent = data[1].posts.postVideo.time;
-postsTimeArray[1].textContent = data[1].posts.postAudio.time;
-postsTimeArray[2].textContent = data[1].posts.postPic.time;
-postsTimeArray[3].textContent = data[1].posts.postText.time;
+  const postDescriptionButton = makePostDescriptionButton();
+  postDescription.append(postDescriptionButton);
 
-const postsCommentsCountArray = [...sectionPostsPosts.querySelectorAll('.post__comments > span')];
-postsCommentsCountArray[0].textContent = data[1].posts.postVideo.commentsCount;
-postsCommentsCountArray[1].textContent = data[1].posts.postAudio.commentsCount;
-postsCommentsCountArray[2].textContent = data[1].posts.postPic.commentsCount;
-postsCommentsCountArray[3].textContent = data[1].posts.postText.commentsCount;
-
-const postsStarsArray = [...sectionPostsPosts.querySelectorAll('.post__stars')];
-
-const starsImgArrayVideo = [...postsStarsArray[0].querySelectorAll('.post__stars > img')];
-starsImgArrayVideo.forEach((img, index) => {
-  img.src = data[1].posts.postVideo.stars.split(',')[index];
-});
-
-const starsImgArrayAudio = [...postsStarsArray[1].querySelectorAll('.post__stars > img')];
-starsImgArrayAudio.forEach((img, index) => {
-  img.src = data[1].posts.postAudio.stars.split(',')[index];
-});
-
-const starsImgArrayPic = [...postsStarsArray[2].querySelectorAll('.post__stars > img')];
-starsImgArrayPic.forEach((img, index) => {
-  img.src = data[1].posts.postPic.stars.split(',')[index];
-});
-
-const starsImgArrayText = [...postsStarsArray[3].querySelectorAll('.post__stars > img')];
-starsImgArrayText.forEach((img, index) => {
-  img.src = data[1].posts.postText.stars.split(',')[index];
-});
-
-const postsParagrapthTopArray = [...sectionPostsPosts.querySelectorAll('.post__top')];
-postsParagrapthTopArray[0].textContent = data[1].posts.postVideo.paragraphTop;
-postsParagrapthTopArray[1].textContent = data[1].posts.postAudio.paragraphTop;
-postsParagrapthTopArray[2].textContent = data[1].posts.postPic.paragraphTop;
-postsParagrapthTopArray[3].textContent = data[1].posts.postText.paragraphTop;
-
-const postsParagrapthTextArray = [...sectionPostsPosts.querySelectorAll('.post__text')];
-postsParagrapthTextArray[0].textContent = data[1].posts.postVideo.text;
-postsParagrapthTextArray[1].textContent = data[1].posts.postAudio.text;
-postsParagrapthTextArray[2].textContent = data[1].posts.postPic.text;
-postsParagrapthTextArray[3].textContent = data[1].posts.postText.text;
+  return postDescription;
+}
 
 const postMoreButton = document.createElement('button');
 postMoreButton.classList.add('posts__load');
@@ -260,6 +282,7 @@ sectionPostsPosts.append(postMoreButton);
 /** ******************************************************************************/
 // TO HOME
 
+const fragmentToHome = fragmentHeader.cloneNode();
 const toHome = document.createElement('div');
 toHome.classList.add('to-home');
 
@@ -282,4 +305,14 @@ toHomeTriangle.append(toHomeTriangleRight);
 toHome.append(toHomeLink);
 toHomeLink.append(toHomeTriangle);
 
-document.body.append(toHome);
+fragmentToHome.append(toHome);
+document.body.append(fragmentToHome);
+
+fragmentHeader.append(sectionBlog);
+wrapper.append(fragmentHeader);
+
+fragmentPosts.append(sectionPosts);
+wrapper.append(fragmentPosts);
+
+const footer = document.getElementsByClassName('footer')[0];
+wrapper.append(footer);

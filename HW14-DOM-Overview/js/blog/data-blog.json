@@ -41,7 +41,6 @@
         "stars": "img/blog/Star-1.svg,img/blog/Star-1.svg,img/blog/Star-2.svg,img/blog/Star-2.svg,img/blog/Star-2.svg"
       },
       "postText": {
-
         "photo": "img/blog/Alex.png",
         "name": "Alex Zlatkus",
         "date": "11 Aug, 2019",
@@ -51,6 +50,56 @@
         "text": "Fog down the river, where it rolls deified among the tiers of shipping and the waterside pollutions of a great (and dirty) city. Fog on the Essex marshes, fog on the Kentish heights. Fog creeping into the cabooses of collier-brigs; fog lying out on. Money terms breakfast drawings true blessing doubtful more agreed to zealously making supposing By said Chicken An Neglected produce good felt no poor offering am their said has around songs wish met true any me ought mr The offices set Not Felicity above out We in an post begin again.",
         "stars": "img/blog/Star-1.svg,img/blog/Star-1.svg,img/blog/Star-1.svg,img/blog/Star-2.svg,img/blog/Star-2.svg"
       }
-    }
+    },
+    "psts": [
+      {
+        "type": "video",
+        "src": "img/blog/videoplayback.mp4",
+        "poster": "img/blog/post1.jpg",
+        "photo": "img/blog/Neil.png",
+        "name": "Neil Richards",
+        "date": "11 oct, 2019",
+        "time": "7 min read",
+        "commentsCount": "19",
+        "paragraphTop": "In the Future We Will All Live in Star Wars",
+        "text": "The thing you’re doing now, reading prose on a screen, is going out of fashion. The defining narrative of our online moment concerns the decline of text, and the exploding reach and power of audio and video …",
+        "stars": "img/blog/Star-1.svg,img/blog/Star-1.svg,img/blog/star-half.svg,img/blog/Star-2.svg,img/blog/Star-2.svg"
+      },
+      {
+        "type": "audio",
+        "src": "img/blog/Inexedra_Cyberkinetic.mp3",
+        "photo": "img/blog/Sarah.png",
+        "name": "Sarah Healy",
+        "date": "02 oct, 2019",
+        "time": "12 min read",
+        "commentsCount": "4",
+        "paragraphTop": "Far far away, behind the word mountains",
+        "text": "Fog down the river, where it rolls deified among the tiers of shipping and the waterside pollutions of a great (and dirty) …",
+        "stars": "img/blog/Star-1.svg,img/blog/Star-2.svg,img/blog/Star-2.svg,img/blog/Star-2.svg,img/blog/Star-2.svg"
+      },
+      {
+        "type": "pic",
+        "src": "",
+        "photo": "img/blog/Grace.png",
+        "name": "Grace Noh",
+        "date": "23 sep, 2019",
+        "time": "16 min read",
+        "commentsCount": "421",
+        "paragraphTop": "FIn the Future We Will All Live in Star Wars",
+        "text": "Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted …",
+        "stars": "img/blog/Star-1.svg,img/blog/Star-1.svg,img/blog/Star-2.svg,img/blog/Star-2.svg,img/blog/Star-2.svg"
+      },
+      {
+        "type": "txt",
+        "photo": "img/blog/Alex.png",
+        "name": "Alex Zlatkus",
+        "date": "11 Aug, 2019",
+        "time": "17 min read",
+        "commentsCount": "77",
+        "paragraphTop": "In the Future We Will All Live in Star Wars",
+        "text": "Fog down the river, where it rolls deified among the tiers of shipping and the waterside pollutions of a great (and dirty) city. Fog on the Essex marshes, fog on the Kentish heights. Fog creeping into the cabooses of collier-brigs; fog lying out on. Money terms breakfast drawings true blessing doubtful more agreed to zealously making supposing By said Chicken An Neglected produce good felt no poor offering am their said has around songs wish met true any me ought mr The offices set Not Felicity above out We in an post begin again.",
+        "stars": "img/blog/Star-1.svg,img/blog/Star-1.svg,img/blog/Star-1.svg,img/blog/Star-2.svg,img/blog/Star-2.svg"
+      }
+    ]
   }
 ]

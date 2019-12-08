@@ -150,6 +150,7 @@ body {
     box-sizing: border-box;
     position: relative;
     border-radius: 5px;
+    margin-bottom: 20px;
 
     @include make-xs-column(12);
     @include make-sm-column(4);
@@ -172,12 +173,11 @@ body {
     margin-bottom: 20px;
   }
 
-  &__icon:nth-child(1)::after,
-  &__icon:nth-child(3)::after {
+  &__icon:nth-child(odd)::after {
     right: -5px;
   }
 
-  &__icon:nth-child(2)::after {
+  &__icon:nth-child(even)::after {
     left: -5px;
   }
 

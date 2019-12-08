@@ -11,14 +11,15 @@ function getData() {
   }
 }
 
-const header = document.getElementById('home');
+const fragmentHeader = document.createDocumentFragment();
+const wrapper = document.getElementsByClassName('wrapper')[0];
 
 /** ******************************************************************************/
 // SECTION PAGE HEAD
 
 const containerHead = document.createElement('div');
 containerHead.classList.add('container');
-header.insertAdjacentElement('afterend',containerHead);
+fragmentHeader.append(containerHead);
 
 const rowHead = document.createElement('div');
 rowHead.classList.add('row');
@@ -101,6 +102,8 @@ starsImgArray.forEach((img, index) => {
 
 /** ******************************************************************************/
 // SECTION MAIN
+
+const fragmentMain = fragmentHeader.cloneNode();
 
 const containerMain = document.createElement('div');
 containerMain.classList.add('container');
@@ -264,7 +267,9 @@ latestHeader.classList.add('latest__header');
 latestHeader.textContent = data[2].aside.header;
 latest.append(latestHeader);
 
-for (let i = 0; i < 2; i++) {
+const asidePosts = data[2].aside.asidePosts;
+
+asidePosts.forEach((postJson) => {
   const post = document.createElement('div');
   post.classList.add('latest__post');
 
@@ -274,50 +279,70 @@ for (let i = 0; i < 2; i++) {
   const sidePostPreview = document.createElement('div');
   sidePostPreview.classList.add('side-post__preview');
 
+  const sidePostContent = makeSidePostContent(postJson);
+
+  sidePost.append(sidePostPreview);
+  sidePost.append(sidePostContent);
+  post.append(sidePost);
+  latest.append(post);
+});
+
+function makeSidePostContent(postJson) {
   const sidePostContent = document.createElement('div');
   sidePostContent.classList.add('side-post__content');
 
   const sidePostContentHeader = document.createElement('div');
-  sidePostContentHeader.textContent = data[2].aside.asidePost.header;
+  sidePostContentHeader.textContent = postJson.header;
   sidePostContentHeader.classList.add('side-post__header');
 
   const sidePostContentInfo = document.createElement('div');
   sidePostContentInfo.classList.add('side-post__info');
 
+  const sidePostContentInfoRates = makeSidePostContentInfoRates(postJson);
+
+  sidePostContentInfo.append(sidePostContentInfoRates);
+  sidePostContent.append(sidePostContentHeader);
+  sidePostContent.append(sidePostContentInfo);
+
+  return sidePostContent;
+}
+
+function makeSidePostContentInfoRates(postJson) {
   const sidePostContentInfoRates = document.createElement('div');
   sidePostContentInfoRates.classList.add('side-post__rates');
 
   const sidePostContentInfoRatesDate = document.createElement('div');
   sidePostContentInfoRatesDate.classList.add('side-post__date');
-  sidePostContentInfoRatesDate.textContent = data[2].aside.asidePost.date;
+  sidePostContentInfoRatesDate.textContent = postJson.date;
 
   const sidePostContentInfoRatesTime = document.createElement('div');
   sidePostContentInfoRatesTime.classList.add('side-post__time');
-  sidePostContentInfoRatesTime.textContent = data[2].aside.asidePost.time;
+  sidePostContentInfoRatesTime.textContent = postJson.time;
 
+  const sidePostContentInfoRatesComments = makeSidePostContentInfoRatesComments(postJson);
+
+  sidePostContentInfoRates.append(sidePostContentInfoRatesDate);
+  sidePostContentInfoRates.append(sidePostContentInfoRatesTime);
+  sidePostContentInfoRates.append(sidePostContentInfoRatesComments);
+  return sidePostContentInfoRates;
+}
+
+function makeSidePostContentInfoRatesComments(postJson) {
   const sidePostContentInfoRatesComments = document.createElement('div');
   sidePostContentInfoRatesComments.classList.add('side-post__comments');
 
   const sidePostContentInfoRatesCommentsIcon = document.createElement('img');
   sidePostContentInfoRatesCommentsIcon.alt = 'icon-comments';
-  sidePostContentInfoRatesCommentsIcon.src = data[2].aside.asidePost.iconComments;
+  sidePostContentInfoRatesCommentsIcon.src = postJson.iconComments;
   sidePostContentInfoRatesCommentsIcon.classList.add('side-post__icon');
 
   const sidePostContentInfoRatesCommentsCounter = document.createElement('span');
-  sidePostContentInfoRatesCommentsCounter.textContent = data[2].aside.asidePost.commentsCounter;
+  sidePostContentInfoRatesCommentsCounter.textContent = postJson.commentsCounter;
 
   sidePostContentInfoRatesComments.append(sidePostContentInfoRatesCommentsIcon);
   sidePostContentInfoRatesComments.append(sidePostContentInfoRatesCommentsCounter);
-  sidePostContentInfoRates.append(sidePostContentInfoRatesDate);
-  sidePostContentInfoRates.append(sidePostContentInfoRatesTime);
-  sidePostContentInfoRates.append(sidePostContentInfoRatesComments);
-  sidePostContentInfo.append(sidePostContentInfoRates);
-  sidePostContent.append(sidePostContentHeader);
-  sidePostContent.append(sidePostContentInfo);
-  sidePost.append(sidePostPreview);
-  sidePost.append(sidePostContent);
-  post.append(sidePost);
-  latest.append(post);
+
+  return sidePostContentInfoRatesComments;
 }
 
 const latestButton = document.createElement('button');
@@ -335,7 +360,8 @@ categoriesHeader.classList.add('categories__header');
 categoriesHeader.textContent = data[3].categories.header;
 categories.append(categoriesHeader);
 
-for (let i = 0; i < 5; i++) {
+const categoriesItemArray = data[3].categories.items;
+categoriesItemArray.forEach((item) => {
   const categoriesItems = document.createElement('div');
   categoriesItems.classList.add('categories__items');
 
@@ -346,58 +372,38 @@ for (let i = 0; i < 5; i++) {
   const categoriesItemsLabel = document.createElement('label');
   categoriesItemsLabel.classList.add('categories__label');
 
-  if (i === 0) {
-    categoriesItemsInput.id = data[3].categories.items.item1.id;
-    categoriesItemsLabel.htmlFor = data[3].categories.items.item1.id;
-    categoriesItemsLabel.textContent = data[3].categories.items.item1.label;
-  }
-  if (i === 1) {
-    categoriesItemsInput.id = data[3].categories.items.item2.id;
-    categoriesItemsLabel.htmlFor = data[3].categories.items.item2.id;
-    categoriesItemsLabel.textContent = data[3].categories.items.item2.label;
-  }
-  if (i === 2) {
-    categoriesItemsInput.id = data[3].categories.items.item3.id;
-    categoriesItemsLabel.htmlFor = data[3].categories.items.item3.id;
-    categoriesItemsLabel.textContent = data[3].categories.items.item3.label;
-  }
-  if (i === 3) {
-    categoriesItemsInput.id = data[3].categories.items.item4.id;
-    categoriesItemsLabel.htmlFor = data[3].categories.items.item4.id;
-    categoriesItemsLabel.textContent = data[3].categories.items.item4.label;
-  }
-  if (i === 4) {
-    categoriesItemsInput.id = data[3].categories.items.item5.id;
-    categoriesItemsLabel.htmlFor = data[3].categories.items.item5.id;
-    categoriesItemsLabel.textContent = data[3].categories.items.item5.label;
-  }
+  categoriesItemsInput.id = item.id;
+  categoriesItemsLabel.htmlFor = item.id;
+  categoriesItemsLabel.textContent = item.label;
 
-  const categoriesItemsList = document.createElement('ul');
-  categoriesItemsList.classList.add('categories__list');
+  const categoriesItemsList = makeCategoriesItemList(item, item.links);
 
   categoriesItems.append(categoriesItemsInput);
   categoriesItems.append(categoriesItemsLabel);
   categoriesItems.append(categoriesItemsList);
   categories.append(categoriesItems);
-}
+});
 
-const categoriesItemsListArray = [...categories.querySelectorAll('.categories__list')];
-const names = data[3].categories.items.links.split(',');
+function makeCategoriesItemList(item, links) {
+  const categoriesItemsList = document.createElement('ul');
+  categoriesItemsList.classList.add('categories__list');
 
-categoriesItemsListArray.forEach((ul) => {
-  for (let i = 0; i < 3; i++) {
+  const names = links.split(',');
+  names.forEach((name) => {
     const item = document.createElement('li');
     item.classList.add('categories__item');
 
     const itemLink = document.createElement('a');
     itemLink.src = '#';
     itemLink.classList.add('categories__link');
-    itemLink.textContent = names[i];
+    itemLink.textContent = name;
 
     item.append(itemLink);
-    ul.append(item);
-  }
-});
+    categoriesItemsList.append(item);
+  });
+
+  return categoriesItemsList;
+}
 
 // TAGS
 const tags = document.createElement('div');
@@ -415,7 +421,7 @@ tags.append(tagsButtons);
 
 const buttonsContent = data[4].tags.buttons.split(',');
 
-for (let i = 0; i < 13; i++) {
+for (let i = 0; i < buttonsContent.length; i++) {
   const button = document.createElement('button');
   button.classList.add('tags__button');
   button.textContent = buttonsContent[i];
@@ -441,69 +447,75 @@ const mainReviewsContentTimeline = document.createElement('div');
 mainReviewsContentTimeline.classList.add('reviews__timeline');
 mainReviewsContent.append(mainReviewsContentTimeline);
 
-for (let i = 0; i < 3; i++) {
+const reviewsArray = data[5].reviews.posts;
+reviewsArray.forEach((post) => {
   const review = document.createElement('div');
   review.classList.add('reviews__review');
 
-  const reviewInfo = document.createElement('div');
-  reviewInfo.classList.add('reviews__info');
+  const reviewInfo = makeReviewInfo(post);
 
-  const reviewAuthor = document.createElement('div');
-  reviewAuthor.classList.add('reviews__author');
-  reviewInfo.append(reviewAuthor);
-
-  const reviewStars = document.createElement('div');
-  reviewStars.classList.add('reviews__stars');
-  reviewInfo.append(reviewStars);
-
-  const reviewTime = document.createElement('div');
-  reviewTime.classList.add('reviews__time');
+  const reviewTime = makeReviewTime(post);
   reviewInfo.append(reviewTime);
 
-  const reviewTimeImg = document.createElement('img');
-  reviewTimeImg.alt = 'time';
-  reviewTimeImg.src = data[5].reviews.timeIcon;
-  reviewTime.append(reviewTimeImg);
-
   const reviewParagraph = document.createElement('div');
+  reviewParagraph.textContent = post.paragraph;
   reviewParagraph.classList.add('reviews__paragraph');
 
   const reviewLink = document.createElement('div');
-  reviewLink.textContent = data[5].reviews.link;
+  reviewLink.textContent = post.link;
   reviewLink.classList.add('reviews__link');
 
   review.append(reviewInfo);
   review.append(reviewParagraph);
   review.append(reviewLink);
   mainReviewsContent.append(review);
+});
+
+function makeReviewInfo(post) {
+  const reviewInfo = document.createElement('div');
+  reviewInfo.classList.add('reviews__info');
+
+  const reviewAuthor = document.createElement('div');
+  reviewAuthor.classList.add('reviews__author');
+  reviewAuthor.textContent = post.author;
+  reviewInfo.append(reviewAuthor);
+
+  const reviewStars = makeReviewStars(post);
+  reviewInfo.append(reviewStars);
+
+  return reviewInfo;
 }
 
-const authorsArray = [...mainReviewsContent.querySelectorAll('.reviews__author')];
-authorsArray[0].textContent = data[5].reviews.post1.author;
-authorsArray[1].textContent = data[5].reviews.post2.author;
-authorsArray[2].textContent = data[5].reviews.post3.author;
+function makeReviewTime(post) {
+  const reviewTime = document.createElement('div');
+  reviewTime.classList.add('reviews__time');
 
-const timeArray = [...mainReviewsContent.querySelectorAll('.reviews__time')];
-timeArray[0].append(data[5].reviews.post1.time);
-timeArray[1].append(data[5].reviews.post2.time);
-timeArray[2].append(data[5].reviews.post3.time);
+  const reviewTimeImg = document.createElement('img');
+  reviewTimeImg.alt = 'time';
+  reviewTimeImg.src = post.timeIcon;
+  reviewTime.append(reviewTimeImg);
 
-const paragraphArray = [...mainReviewsContent.querySelectorAll('.reviews__paragraph')];
-paragraphArray[0].textContent = data[5].reviews.post1.paragraph;
-paragraphArray[1].textContent = data[5].reviews.post2.paragraph;
-paragraphArray[2].textContent = data[5].reviews.post3.paragraph;
+  const reviewTimeCounter = document.createElement('span');
+  reviewTimeCounter.append(post.time);
+  reviewTime.append(reviewTimeCounter);
 
-const starsReviewsImgArray = [...mainReviewsContent.querySelectorAll('.reviews__stars')];
-starsReviewsImgArray.forEach((divStar, index) => {
-  const post = `post${index + 1}`;
-  const starsArray = data[5].reviews[post].stars.split(',');
-  for (let i = 0; i < 5; i++) {
+  return reviewTime;
+}
+
+function makeReviewStars(post) {
+  const reviewStars = document.createElement('div');
+  reviewStars.classList.add('reviews__stars');
+
+  const starsArray = post.stars.split(',');
+  starsArray.forEach((star) => {
     const reviewStarsImg = document.createElement('img');
     reviewStarsImg.alt = 'star';
-    reviewStarsImg.src = starsArray[i];
-    divStar.append(reviewStarsImg);
-  }
-});
+    reviewStarsImg.src = star;
+    reviewStars.append(reviewStarsImg);
+  });
+
+  return reviewStars;
+}
 
 const mainReviewsButton = document.createElement('button');
 mainReviewsButton.classList.add('reviews__more');
@@ -513,6 +525,7 @@ mainReviews.append(mainReviewsButton);
 /** ******************************************************************************/
 // TO HOME
 
+const fragmentToHome = fragmentHeader.cloneNode();
 const toHome = document.createElement('div');
 toHome.classList.add('to-home');
 
@@ -535,4 +548,11 @@ toHomeTriangle.append(toHomeTriangleRight);
 toHome.append(toHomeLink);
 toHomeLink.append(toHomeTriangle);
 
-document.body.append(toHome);
+fragmentToHome.append(toHome);
+document.body.append(fragmentToHome);
+
+const footer = document.getElementsByClassName('footer')[0];
+wrapper.append(fragmentHeader);
+wrapper.append(fragmentMain);
+
+wrapper.append(footer);

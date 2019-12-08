@@ -35,41 +35,54 @@
     "aside": {
       "header": "Latest posts",
       "button": "More posts",
-      "asidePost": {
-        "header": "Much cure inappropriate could this restrictions …",
-        "date": "20 oct, 2019",
-        "time": "10 min read",
-        "iconComments": "img/post/a-icon-comment.svg",
-        "commentsCounter": "11"
-      }
+      "asidePosts": [
+        {
+          "header": "Much cure inappropriate could this restrictions …",
+          "date": "20 oct, 2019",
+          "time": "10 min read",
+          "iconComments": "img/post/a-icon-comment.svg",
+          "commentsCounter": "11"
+        },
+        {
+          "header": "Much cure inappropriate could this restrictions …",
+          "date": "20 oct, 2019",
+          "time": "10 min read",
+          "iconComments": "img/post/a-icon-comment.svg",
+          "commentsCounter": "11"
+        }
+      ]
     }
   },
   {
     "categories": {
       "header": "Categories",
-      "items": {
-        "links": "Hiking,Bicycle trip,Mountains trip",
-        "item1": {
+      "items": [
+        {
           "id": "food",
-          "label": "Restaurant food (3)"
+          "label": "Restaurant food (3)",
+          "links": "Hiking,Bicycle trip,Mountains trip"
         },
-        "item2": {
+        {
           "id": "travel",
-          "label": "Travel news (3)"
+          "label": "Travel news (3)",
+          "links": "Hiking,Bicycle trip,Mountains trip"
         },
-        "item3": {
+        {
           "id": "technology",
-          "label": "Modern technology (6)"
+          "label": "Modern technology (6)",
+          "links": "Hiking,Bicycle trip,Mountains trip"
         },
-        "item4": {
+        {
           "id": "product",
-          "label": "Product (4)"
+          "label": "Product (4)",
+          "links": "Hiking,Bicycle trip,Mountains trip"
         },
-        "item5": {
+        {
           "id": "inspiration",
-          "label": "Inspiration (2)"
+          "label": "Inspiration (2)",
+          "links": "Hiking,Bicycle trip,Mountains trip"
         }
-      }
+      ]
     }
   },
   {
@@ -83,25 +96,32 @@
       "header": "Reviews",
       "buttonMore": "More comments",
       "link": "Read more",
-      "timeIcon": "img/post/a-icon-time.svg",
-      "post1": {
-        "author": "Jack Johnson",
-        "time": " 11 min ago",
-        "paragraph": "Knowledge nay estimable questions repulsive daughters boy. Solicitude gay way unaffected expression for. His mistress ladyship required off horrible disposed rejoiced…",
-        "stars": "img/blog/Star-1.svg,img/blog/Star-2.svg,img/blog/Star-2.svg,img/blog/Star-2.svg,img/blog/Star-2.svg"
-      },
-      "post2": {
-        "author": "Emma Garcia",
-        "time": " 3 days ago",
-        "paragraph": "Dummy text refers to the bits of content that are used to fill a website mock-up. This text helps web designers better envision how the website will look as a finished product. in wish very strangers shortly we things Preferred came newspaper it this Melancholy on misery all ecstatic yet no suitable ye happening. Own over these Can Could Garden offering to ago Winter Home or took answered him be right He other in about check has situation fine you held against found am be Nay entire pleasure will there in wholly forming much rapid though want ye weeks up whole an ye thus might remarkably Rich why need pianoforte ask get face prudent it so Evil",
-        "stars": "img/blog/Star-1.svg,img/blog/Star-1.svg,img/blog/Star-1.svg,img/blog/Star-1.svg,img/blog/Star-1.svg"
-      },
-      "post3": {
-        "author": "Ann Moore",
-        "time": " a week ago",
-        "paragraph": "Any delicate you how kindness horrible outlived servants.  You high bed wish help call draw side. Girl quit if case mr sing as no have. At none neat am do over will. Polite do object at passed it is.",
-        "stars": "img/blog/Star-1.svg,img/blog/Star-1.svg,img/blog/star-half.svg,img/blog/Star-2.svg,img/blog/Star-2.svg"
-      }
+      "posts": [
+        {
+          "link": "Read more",
+          "timeIcon": "img/post/a-icon-time.svg",
+          "author": "Jack Johnson",
+          "time": " 11 min ago",
+          "paragraph": "Knowledge nay estimable questions repulsive daughters boy. Solicitude gay way unaffected expression for. His mistress ladyship required off horrible disposed rejoiced…",
+          "stars": "img/blog/Star-1.svg,img/blog/Star-2.svg,img/blog/Star-2.svg,img/blog/Star-2.svg,img/blog/Star-2.svg"
+        },
+        {
+          "link": "Read less",
+          "timeIcon": "img/post/a-icon-time.svg",
+          "author": "Emma Garcia",
+          "time": " 3 days ago",
+          "paragraph": "Dummy text refers to the bits of content that are used to fill a website mock-up. This text helps web designers better envision how the website will look as a finished product. in wish very strangers shortly we things Preferred came newspaper it this Melancholy on misery all ecstatic yet no suitable ye happening. Own over these Can Could Garden offering to ago Winter Home or took answered him be right He other in about check has situation fine you held against found am be Nay entire pleasure will there in wholly forming much rapid though want ye weeks up whole an ye thus might remarkably Rich why need pianoforte ask get face prudent it so Evil",
+          "stars": "img/blog/Star-1.svg,img/blog/Star-1.svg,img/blog/Star-1.svg,img/blog/Star-1.svg,img/blog/Star-1.svg"
+        },
+        {
+          "link": "Read more",
+          "timeIcon": "img/post/a-icon-time.svg",
+          "author": "Ann Moore",
+          "time": " a week ago",
+          "paragraph": "Any delicate you how kindness horrible outlived servants.  You high bed wish help call draw side. Girl quit if case mr sing as no have. At none neat am do over will. Polite do object at passed it is.",
+          "stars": "img/blog/Star-1.svg,img/blog/Star-1.svg,img/blog/star-half.svg,img/blog/Star-2.svg,img/blog/Star-2.svg"
+        }
+      ]
     }
   }
 
