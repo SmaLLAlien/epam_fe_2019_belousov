@@ -1,7 +1,7 @@
 
 ###### 1. Clone this repositorie to you disk
 ```
-git clone git clone https://github.com/SmaLLAlien/epam_fe_2019_belousov.git -b HW16-17-AJAX --single-branch
+git clone https://github.com/SmaLLAlien/epam_fe_2019_belousov.git -b HW16-17-AJAX --single-branch
 ```
 ###### 2. Go inside project folder
 ```
@@ -23,7 +23,7 @@ npm start
 ** TO MAKE IT WORK, PLEASE RUN SERVER, IF YOU DONT USE WEBSTORM **
 
 notes:
-
+```
 a)I added fileds for test (optional) - Insert link to Video/Audio - here you can insert direct link to some video or audio file from internet, or use these:
 1. for type audio: https://cdn7.sefon.fm/files/prev/42/Michael%20Jackson%20-%20They%20Don%27t%20Care%20About%20Us%20%28128%29.mp3
 2. for type video: https://videos.increaserev.com/us/21_Сгорел-авто.mp4
