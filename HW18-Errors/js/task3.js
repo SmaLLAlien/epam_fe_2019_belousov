@@ -27,6 +27,7 @@ function parseJSON(json) {
 window.onerror = function (errorMsg, url, lineNumber) {
   /* eslint no-console: 0*/
   console.log(`${errorMsg} at line ${lineNumber} in ${url}`);
+  return true;
 };
 
 parseJSON('{"name":"student", "company":"epam"}');
