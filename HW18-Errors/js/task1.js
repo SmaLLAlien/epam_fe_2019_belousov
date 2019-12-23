@@ -7,25 +7,37 @@ function calculateFibByRecursion(sequenceLength) {
 }
 
 function calculateFibByCycle(sequenceLength) {
-  let prev = 0;
-  let next = 1;
-  for (let i = 1; i < sequenceLength; i++) {
-    const temp = next;
-    next = prev + temp;
-    prev = temp;
+  if (sequenceLength === 0) {
+    return 0;
+  }
+  if (sequenceLength === 1) {
+    return 1;
+  }
+  if (sequenceLength > 2) {
+    let prev = 0;
+    let next = 1;
+    for (let i = 1; i < sequenceLength; i++) {
+      const temp = next;
+      next = prev + temp;
+      prev = temp;
+    }
+    return next;
   }
 }
 
 function banchMarck(funck, times = 1, sequenceLength) {
-  const start = performance.now();
+  let timeSum = 0;
   for (let i = 0; i < times; i++) {
+    const start = performance.now();
     funck(sequenceLength);
+    const end = performance.now();
+    timeSum += (end - start);
   }
   /* eslint no-console: 0*/
-  console.log(performance.now() - start, `${funck.name} time`);
+  console.log(timeSum / times, `${funck.name} time`);
 }
-banchMarck(calculateFibByCycle, 1, 27);
-banchMarck(calculateFibByRecursion, 1, 27);
+banchMarck(calculateFibByCycle, 5, 20);
+banchMarck(calculateFibByRecursion, 5, 20); // dont try big numbers in sequenceLength
 
 /*
 Recursive method is slower then cycle, because every time, when function is called - execution context
