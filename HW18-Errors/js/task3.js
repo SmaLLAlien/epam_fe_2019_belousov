@@ -4,7 +4,7 @@ function DataMissing(property) {
   this.toString = () => `${this.name}: ${this.message}`;
 }
 
-DataMissing.prototype = new SyntaxError();
+DataMissing.prototype = Object.create(SyntaxError.prototype);
 
 function parseJSON(json) {
   try {
@@ -26,7 +26,7 @@ function parseJSON(json) {
 
 window.onerror = function (errorMsg, url, lineNumber) {
   /* eslint no-console: 0*/
-  console.log(`${errorMsg} at line ${lineNumber} in ${url}`);
+  alert(`${errorMsg} at line ${lineNumber} in ${url}`);
   return true;
 };
 
