@@ -26,7 +26,7 @@ function parseJSON(json) {
 
 window.onerror = function (errorMsg, url, lineNumber) {
   /* eslint no-console: 0*/
-  alert(`${errorMsg} at line ${lineNumber} in ${url}`);
+  console.log(`${errorMsg} at line ${lineNumber} in ${url}`);
   return true;
 };
 
