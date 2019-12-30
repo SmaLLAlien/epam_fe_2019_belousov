@@ -1,0 +1,15 @@
+@mixin button {
+  box-sizing: border-box;
+  padding: 10px 26px;
+  background: transparent;
+  border: 1px solid $buttonTextColor;
+  outline: none;
+  font: 0.9375rem HindSiliguri-Regular, sans-serif;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+@mixin buttonHover {
+  background: $buttonHover;
+  color: #fff;
+}
