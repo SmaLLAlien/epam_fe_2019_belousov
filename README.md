@@ -1,11 +1,25 @@
-# RD Front-End Students Pack
 
-This repo exists for student needs
+###### 1. Clone this repositorie to you disk
+```
+git clone https://github.com/SmaLLAlien/epam_fe_2019_belousov.git -b HW21-BOM --single-branch
+```
+###### 2. Go inside project folder
+```
+cd epam_fe_2019_belousov
+```
+###### 3. Initialize
+```
+npm install
+```
+###### 4. go to server folder and run 
+```
+npm install
+```
+###### 5. run server
+```
+npm start
+```
+###### 6. go back to HW21-BOM and open inex.html
+** TO MAKE IT WORK, PLEASE RUN SERVER, IF YOU DONT USE WEBSTORM **
 
-By default, this repo includes the following tools:
-* [EditorConfig](https://editorconfig.org/)
-* [Stylelint](https://stylelint.io) with `stylelint-config-standard` config
-* [ESLint](https://eslint.org) with `eslint:recommended` config and custom rules
-* [HTMLLint](https://github.com/htmllint/htmllint-cli) with standart config and some fixes
-* [lint-staged](https://github.com/okonet/lint-staged)
-* [Husky](https://github.com/typicode/husky)
+
