@@ -20,11 +20,11 @@ function main() {
       wrapper.append(footer);
       makeToHome();
       makeAddPostElement();
-      makeSlidersWork();
+      runSlider();
+    })
+    .catch((error) => {
+      alert(error.message);
     });
-  // .catch((error) => {
-  //   alert(error.message);
-  // });
 }
 
 function getData(url) {
@@ -39,12 +39,12 @@ const makeElement = (elementType, elementClass) => {
   return element;
 };
 
-function makeSlidersWork() {
-  const containerSlider1 = document.querySelector('.latest-portfolio__slider > .container');
-  const testimonials__content = document.querySelector('.testimonials__content');
+function runSlider() {
+  const containerSlider = document.querySelector('.latest-portfolio__slider > .container');
+  const testimonialsContent = document.querySelector('.testimonials__content');
 
-  const testimonials = new SliderTestimonials(testimonials__content, 1);
-  const lastPortfolio = new SliderLatestPortfolio(containerSlider1, 3);
+  const testimonials = new SliderTestimonials(testimonialsContent, 1);
+  const lastPortfolio = new SliderLatestPortfolio(containerSlider, 3);
   testimonials.addListeners();
   testimonials.makeInfinity();
   lastPortfolio.addListeners();
