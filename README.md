@@ -19,7 +19,7 @@ npm install
 ```
 npm start
 ```
-###### 6. go back to HW21-BOM and open inex.html
+###### 6. go back to HW22-jQuery and open inex.html
 ** TO MAKE IT WORK, PLEASE RUN SERVER, IF YOU DONT USE WEBSTORM **
 
 
