@@ -1,7 +1,8 @@
 
-###### 1. Clone this repositorie to you disk
+###### 1. Clone this repositorie to your disk
 ```
-git clone 
+git clone https://github.com/SmaLLAlien/epam_fe_2019_belousov.git -b HW22-jQuery --single-branch
+
 ```
 ###### 2. Go inside project folder
 ```
@@ -19,7 +20,7 @@ npm install
 ```
 npm start
 ```
-###### 6. go back to HW22-jQuery and open inex.html
+###### 6. go back to src and open index.html
 ** TO MAKE IT WORK, PLEASE RUN SERVER, IF YOU DONT USE WEBSTORM **
 
 
