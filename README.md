@@ -12,15 +12,25 @@ cd epam_fe_2019_belousov
 ```
 npm install
 ```
-###### 4. go to server folder and run 
+###### 4. go to server folder
+
+```
+cd server
+```
+###### 5. install packges
 ```
 npm install
 ```
-###### 5. run server
+###### 6. run server
 ```
 npm start
 ```
-###### 6. go back to src and open index.html
+###### 7. go to project root folder
+```
+cd ../
+```
+###### 8. open project with webstorm (or you have to run server) and open index.html from src
+
 ** TO MAKE IT WORK, PLEASE RUN SERVER, IF YOU DONT USE WEBSTORM **
 
 
