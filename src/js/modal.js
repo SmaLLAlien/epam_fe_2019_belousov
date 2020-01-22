@@ -30,15 +30,15 @@
       this.wrapperModal = $('<div class="modal-wrapper"> </div>');
       this.wrapperModal.append(content);
 
-      const body = $('body');
-      body.append(this.wrapperModal);
-      body.addClass('modalOpen'); // prevent opening two modal
-      body.css('overflow', 'hidden'); // stop scroll
+      /* modalOpen - prevent opening two modal
+        .css - stop scroll
+       */
+      $('body').addClass('modalOpen').css('overflow', 'hidden').append(this.wrapperModal);
       const scrollTop = $(window).scrollTop();
       this.wrapperModal.animate({top: `${scrollTop}`});
       $('.wrapper').css('filter', 'blur(5px)');
 
-      this.eventsHandler();
+      this.setEventHandlers();
     },
     closeModal() {
       const self = this;
@@ -46,8 +46,7 @@
         self.wrapperModal.off('click');
         self.wrapperModal.remove();
         $('.wrapper').css('filter', 'blur(0px)');
-        $('body').css('overflow', 'auto'); // allow scroll
-        $('body').removeClass('modalOpen');
+        $('body').css('overflow', 'auto').removeClass('modalOpen'); // allow scroll
       });
     },
     confirmed() {
@@ -66,7 +65,7 @@
         $(document).off('keyup', $.proxy(this.escClose, this));
       }
     },
-    eventsHandler() {
+    setEventHandlers() {
       this.wrapperModal.on('click', 'span.modal__close', this.closeModal.bind(this));
       const self = this;
       this.wrapperModal.click(function (event) { // click only on modal wrapper
@@ -76,19 +75,25 @@
         }
       });
       $(document).on('keyup', $.proxy(this.escClose, this));
-
-      if ($('.modal__btn-cancel').length >= 1) {
+      if (this.wrapperModal.find('.modal__btn-cancel').length >= 1) {
         this.wrapperModal.on('click', 'button.modal__btn-cancel', this.canceled.bind(this));
       }
-      if ($('.modal__btn-ok').length >= 1) {
+      if (this.wrapperModal.find('.modal__btn-ok').length >= 1) {
         this.wrapperModal.on('click', 'button.modal__btn-ok', this.confirmed.bind(this));
       }
     },
 
   };
 
-  $.fn.modal = function (type, title, buttons) {
-    if (!$('body').hasClass('modalOpen')) {
+  // eslint-disable-next-line max-params
+  $.fn.modal = function (type, title, buttons, timeout) {
+    if (timeout) {
+      setTimeout(() => {
+        if (!$('body').hasClass('modalOpen')) {
+          modalObj.createModal(type, title, buttons);
+        }
+      },timeout);
+    } else {
       modalObj.createModal(type, title, buttons);
     }
   };
