@@ -33,9 +33,10 @@
       /* modalOpen - prevent opening two modal
         .css - stop scroll
        */
-      $('body').addClass('modalOpen').css('overflow', 'hidden').append(this.wrapperModal);
-      const scrollTop = $(window).scrollTop();
-      this.wrapperModal.animate({top: `${scrollTop}`});
+      this.scrollTop = parseInt($('body').css('margin-top')) || $(window).scrollTop();
+      $('body').addClass('modalOpen').css({'overflow-x': 'hidden', 'overflow-y': 'scroll', position: 'fixed', 'margin-top': -this.scrollTop}).append(this.wrapperModal);
+
+      this.wrapperModal.animate({top: `${this.scrollTop}`});
       $('.wrapper').css('filter', 'blur(5px)');
 
       this.setEventHandlers();
@@ -46,7 +47,8 @@
         self.wrapperModal.off('click');
         self.wrapperModal.remove();
         $('.wrapper').css('filter', 'blur(0px)');
-        $('body').css('overflow', 'auto').removeClass('modalOpen'); // allow scroll
+        $('body').removeAttr('style').removeClass('modalOpen'); // allow scroll
+        window.scrollTo(0, this.scrollTop);
       });
     },
     confirmed() {
