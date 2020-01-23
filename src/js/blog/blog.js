@@ -69,7 +69,7 @@ function findPosts(posts, searchValue, searchedProperty) {
 function showSubscribeModal() {
   const title = 'Subscribe to this blog and be the first to know about updates';
   // eslint-disable-next-line no-undef
-  $.fn.modal('success', `${title}`, ['ok', 'cancel'], 5000);
+  $.fn.modal('success', `${title}`, ['ok', 'cancel'], 10000);
 }
 
 function makeSectionBlog(data) {
