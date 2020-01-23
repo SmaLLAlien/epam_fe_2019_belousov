@@ -33,7 +33,7 @@
       /* modalOpen - prevent opening two modal
         .css - stop scroll
        */
-      this.scrollTop = parseInt($('body').css('margin-top')) || $(window).scrollTop();
+      this.scrollTop = $(window).scrollTop();
       $('body').addClass('modalOpen').css({'overflow-x': 'hidden', 'overflow-y': 'scroll', position: 'fixed', 'margin-top': -this.scrollTop}).append(this.wrapperModal);
 
       this.wrapperModal.animate({top: `${this.scrollTop}`});
