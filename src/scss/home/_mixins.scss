@@ -1,0 +1,79 @@
+@mixin top($widthFifure, $widthParagraph, $font) {
+  &__top {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 65px;
+  }
+
+  &__header {
+    align-self: center;
+    font: bold 1.5rem HindSiliguri-bold, sans-serif;
+  }
+
+  &__figure {
+    align-self: center;
+    width: $widthFifure;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    height: 8px;
+    position: relative;
+    margin-bottom: 15px;
+  }
+
+  &__figure::before,
+  &__figure::after {
+    position: absolute;
+    display: block;
+    content: "";
+    width: 5px;
+    height: 0;
+    border-top: 1px solid black;
+  }
+
+  &__figure::before {
+    left: -5px;
+  }
+
+  &__figure::after {
+    right: -5px;
+  }
+
+  &__paragraph {
+    width: $widthParagraph;
+    text-align: center;
+    align-self: center;
+    font: 1.0625rem $font, sans-serif;
+  }
+}
+
+@mixin buttonHover {
+  background: $buttonHover;
+  color: #fff;
+}
+
+@mixin controls {
+  &__left,
+  &__right {
+    width: 45px;
+    height: 45px;
+    border: 1px solid $controlsBorderColor;
+    border-radius: 5px;
+    cursor: pointer;
+    align-self: center;
+  }
+
+  &__left {
+    background: url("../../img/home/a-icon-prev.svg") no-repeat center center;
+  }
+
+  &__right {
+    background: url("../../img/home/a-icon-next.svg") no-repeat center center;
+  }
+
+  &__left:hover,
+  &__right:hover {
+    box-shadow: 0 3px 10px 0 #6d6d6d;
+  }
+}

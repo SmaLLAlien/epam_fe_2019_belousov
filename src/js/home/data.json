@@ -1,0 +1,161 @@
+[
+  {
+    "header": {
+      "contentHeader": "Ideas and perspectives you won’t find anywhere else.",
+      "contentParagraph": "BlogWorld taps into the brains of the world’s most insightful writers, thinkers, and storytellers to bring you the smartest takes on topics that matter. So whatever your interest, you can always find fresh thinking and unique perspectives."
+    }
+  },
+  {
+    "aboutUs": {
+      "aboutHeader": "About us",
+      "aboutParagraph": "This is who we are - or at least who we strive to be…",
+      "videoAboutUsSrc": "img/home/videoplayback.mp4",
+      "videoAboutUsPoster": "img/home/About_picture.png",
+      "desc": [{
+        "text": "Typography",
+        "class": "about__icon--green"
+      },
+       {
+         "text": "Icon set",
+         "class": "about__icon--blue"
+      },
+      {
+        "text": "Accurate",
+        "class": "about__icon--red"
+      }]
+    }
+  },
+  {
+    "latestPosts": {
+      "postHeader": "Latest posts",
+      "postParagraph": "Information is a source of learning. But unless it is organized, processed and available to the right people",
+      "posts": [
+        {
+          "previewImg": "img/home/Img_post1.png",
+          "head": "In the Future We Will All Live in Star Wars",
+          "text": "The thing you’re doing now, reading prose on a screen, is going out of fashion. The defining narrative of our online moment concerns the decline of text, and the exploding reach and power of audio and video…",
+          "data": "20 oct, 2019",
+          "time": "10 min read",
+          "imgSrc": "img/home/a-icon-comment.svg",
+          "commentsNumber": "11"
+        },
+        {
+          "previewImg": "img/home/Img_post2.png",
+          "head": "Rubik’s Cube? No, Robotics and AI are…",
+          "text": "In other words, I will try to de-hype the crowd about the recent development in robotics. Concretely, OpenAI has claimed some pretty amazing results with learning to solve the Rubik’s cube with a robotic hand…",
+          "data": "11 oct, 2019",
+          "time": "7 min read",
+          "imgSrc": "img/home/a-icon-comment.svg",
+          "commentsNumber": "19"
+        },
+        {
+          "previewImg": "img/home/Img_post3.png",
+          "head": "How the Internet of Things will Transfo…",
+          "text": "The Internet of Things (IoT) promises to be the most important technological development for consumers since the advent of the smartphone. Experts believe that this collection of internet-connected technolog…",
+          "data": "28 sep, 2019",
+          "time": "16 min read",
+          "imgSrc": "img/home/a-icon-comment.svg",
+          "commentsNumber": "41"
+        }
+      ]
+    }
+  },
+  {
+    "latestPortfolio": {
+      "postHeader": "Latest portfolio",
+      "postParagraph": "Put there articles successfully special warrant submit agree what along then",
+      "slider": [
+        {
+          "previewImg": "img/home/bg_img_1.png",
+          "head": "Art Ocean",
+          "text": "Photography, art, nature"
+        },
+        {
+          "previewImg": "img/home/bg_img_2.png",
+          "head": "City guide",
+          "text": "Photography, city, way"
+        },
+        {
+          "previewImg": "img/home/bg_img_3.png",
+          "head": "MOUNTAINS",
+          "text": "Art, hiking"
+        },
+        {
+          "previewImg": "img/home/bg_img_3.png",
+          "head": "4",
+          "text": "Photography, art, nature"
+        },
+        {
+          "previewImg": "img/home/bg_img_3.png",
+          "head": "5",
+          "text": "Photography, art, nature"
+        },
+        {
+          "previewImg": "img/home/bg_img_3.png",
+          "head": "prev",
+          "text": "Photography, art, nature"
+        },
+        {
+          "previewImg": "img/home/bg_img_3.png",
+          "head": "last",
+          "text": "Photography, art, nature"
+        }
+      ]
+    }
+  },
+  {
+    "testmonials": {
+      "header": "Testimonials",
+      "slider": [
+        {
+          "photo": "img//home/User_img.png",
+          "quote": "We move at a fast pace. I’m always working on something. I am excited about it!",
+          "author": "Martin Oda",
+          "work": "Product desgner"
+        },
+        {
+          "photo": "https://i.etsystatic.com/8061053/r/il/c4921d/823905203/il_570xN.823905203_si1u.jpg",
+          "quote": "We move at a fast pace. I’m always working on something. I am excited about it!",
+          "author": "Martin Oda",
+          "work": "Product desgner"
+        },
+        {
+          "photo": "https://www.bigstockphoto.com/images/homepage/module-4.jpg",
+          "quote": "We move at a fast pace. I’m always working on something. I am excited about it!",
+          "author": "Martin Oda",
+          "work": "Product desgner"
+        },
+        {
+          "photo": "http://petapixel.com/assets/uploads/2019/06/manipulatedelephant-800x534.jpg",
+          "quote": "We move at a fast pace. I’m always working on something. I am excited about it!",
+          "author": "Martin Oda",
+          "work": "Product desgner"
+        }
+
+      ]
+    }
+  },
+  {
+    "contacts": {
+      "header": "Contact us",
+      "paragraph": "Put there articles successfully special warrant submit agree what along then",
+      "iconFacebook": "img/home/a-icon-facebook.svg",
+      "iconInsta": "img/home/a-icon-instagram.svg",
+      "iconBasket": "img/home/a-icon-dribbble.svg",
+      "roadmap": [
+        {
+          "top": "1. We’ll prepare a proposal",
+          "text": "Required scope, timeline and apr. price will be included if you provide us with detail information about a project."
+        },
+        {
+          "top": "2. Together we discuss it",
+          "text": "Let’s get acquainted and discuss all the possible variant and options. Google Hangouts or Skype usually wirks great."
+        },
+        {
+          "top": "1. We’ll prepare a proposal",
+          "text": "Required scope, timeline and apr. price will be included if you provide us with detail information about a project."
+        }
+      ]
+    }
+  }
+]
