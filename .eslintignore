@@ -2,3 +2,4 @@ dist/
 src/**/styles/
 .idea/
 server/
+newServer/
