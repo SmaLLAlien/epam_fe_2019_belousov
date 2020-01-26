@@ -30,17 +30,16 @@ router.get("/some-request", function(req, res) {
     });
 });
 
-router.route('/articles')
-  .get(function (req, res) {
+router.get("/articles",function (req, res) {
     log.info("==Get all list articles==");
     res.end(JSON.stringify(list));
-  })
-  .post(function (req, res) {
+  });
+  router.post("/create-article",function (req, res) {
     log.info("==Save article==");
     list.push(req.body);
     res.end(JSON.stringify(list));
-  })
-  .delete(function (req, res) {
+  });
+  router.delete("/delete-articles", function (req, res) {
     log.info('==Delete all articles==');
     list = [];
     // remove data from file
@@ -59,7 +58,7 @@ router.route('/articles')
     res.end(JSON.stringify(articleById));
   });
 
-  router.delete("/articles/:id", function (req, res) {
+  router.delete("/delete-articles/:id", function (req, res) {
     log.info('==Delete article by id==');
     const articleIndexById = list.findIndex(article => +article.id === +req.params.id);
 
@@ -77,7 +76,7 @@ router.route('/articles')
     res.end(JSON.stringify(articleIndexById));
   });
 
-  router.put("/articles/:id", function (req, res) {
+  router.put("/update-articles/:id", function (req, res) {
     log.info('==Update article by id==');
     const articleIndexById = list.findIndex(article => +article.id === +req.params.id);
     list[articleIndexById] = req.params;

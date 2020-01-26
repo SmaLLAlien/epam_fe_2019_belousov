@@ -36,18 +36,19 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.get('/', function(req, res) {
     res.sendFile(path.resolve( __dirname , 'index.html' ));
 });
-app.get('/api/list', function(req, res) {
+app.get('/api/articles', function(req, res) {
     log.info('==Get all list articles==');
     res.end(JSON.stringify(list));
 });
 
-app.get('/api/list/:id', function(req, res) {
+app.get('/api/articles/:id', function(req, res) {
     log.info('==Get article by id==');
     const articleById = list.find(article => +article.id === +req.params.id);
     res.end(JSON.stringify(articleById));
 });
 
 app.post('/api/create-article', function(req, res) {
+  console.log(req.body, 'id');
     log.info('==Save article==');
     list.push(req.body);
     res.end(JSON.stringify(list));

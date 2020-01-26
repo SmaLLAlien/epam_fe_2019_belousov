@@ -25,8 +25,6 @@ function main() {
       makeSectionBlog(data);
 
       const posts = responses[0];
-      // eslint-disable-next-line no-console
-      console.log(posts);
       localStorage.setItem('posts', JSON.stringify(posts));
       if (window.location.search) {
         const filter = window.location.search.match(/[a-z]+/)[0];

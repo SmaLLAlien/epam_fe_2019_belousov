@@ -17,11 +17,10 @@ const swaggerDocument = YAML.load("./config/swagger.yaml");
 const apiConfig = require(ABSPATH + '/api');
 // app.use ->  this is middleware
 app.use(cors());
-app.use('/api', apiConfig);
 app.use(express.static(__dirname)); //reading static files
 app.use(express.json()); //initialize json parser
 app.use(express.urlencoded({extended: true})); //pars url
-
+app.use('/api', apiConfig);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 //listen our post, 3000
