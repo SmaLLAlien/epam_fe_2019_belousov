@@ -1,0 +1,152 @@
+.add-form {
+  width: 70%;
+  font-size: 1rem;
+  color: $textColor;
+  box-sizing: border-box;
+  transition: all 1s;
+  margin: 0 auto;
+  margin-top: 80px;
+
+  &__type {
+    width: 100%;
+    padding: 15px 10px;
+    color: $textColor;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    margin-bottom: 30px;
+  }
+
+  &__options {
+    text-align: center;
+    cursor: pointer;
+    font-size: 1rem;
+    display: block;
+    padding: 15px 10px;
+  }
+
+  &__link-container,
+  &__preview-container,
+  &__title-container,
+  &__author-container,
+  &__date-container,
+  &__desc-container,
+  &__quote-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  &__link-label,
+  &__title-label,
+  &__author-label,
+  &__date-label,
+  &__desc-label,
+  &__quote-label {
+    font: 1.2rem HindSiliguri-Regular, sans-serif;
+    color: $textColor;
+    display: block;
+    width: 100%;
+    margin-bottom: 5px;
+  }
+
+  &__link-field,
+  &__title-field,
+  &__author-field,
+  &__date-field,
+  &__dec-field,
+  &__dec-header,
+  &__quote-field {
+    width: 100%;
+    height: 45px;
+    font-size: 1.0625rem;
+    border: 1px solid $borderFormInputColor;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    outline: none;
+  }
+
+  &__add-btn {
+    padding: 5px 10px;
+    outline: none;
+    border: none;
+    background: #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+
+  &__desc-add {
+    margin-bottom: 30px;
+  }
+
+  &__dec-field {
+    min-height: 100px;
+    height: 100%;
+    resize: vertical;
+  }
+
+  &__quote-field {
+    height: 200px;
+    resize: vertical;
+  }
+
+  &__link-field:focus,
+  &__title-field:focus,
+  &__author-field:focus,
+  &__date-field:focus,
+  &__dec-field:focus,
+  &__quote-field:focus {
+    outline: none;
+    border-color: $borderFormInputColorFocused;
+  }
+
+  &__link-field:hover,
+  &__title-field:hover,
+  &__author-field:hover,
+  &__date-field:hover,
+  &__dec-field:hover,
+  &__quote-field:hover {
+    outline: none;
+    border-color: $borderFormInputColorFocused;
+  }
+
+  &__link-field:invalid,
+  &__author-field:invalid,
+  &__date-field:invalid {
+    outline: none;
+    border-color: $borderFormInputColorInvalid;
+  }
+
+  &__error {
+    outline: none;
+    border-color: $borderFormInputColorInvalid;
+  }
+
+  &__button-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 80px;
+  }
+
+  &__button,
+  &__reset-button,
+  &__close-button {
+    border: 1px solid lightgray;
+    padding: 10px 26px;
+    border-radius: 5px;
+    outline: none;
+    font: 0.9375rem HindSiliguri-Regular, sans-serif;
+    color: $textColor;
+    background: transparent;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+
+  &__button:hover,
+  &__reset-button:hover,
+  &__close-button:hover {
+    @include buttonHover;
+  }
+}
