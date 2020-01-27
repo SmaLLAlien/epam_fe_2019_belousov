@@ -22,6 +22,7 @@ module.exports = {
         options: {
           fix: true,
           failOnError: true,
+          quiet: true,
         },
       },
       {

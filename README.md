@@ -1,4 +1,4 @@
-** all hanges you can find in newServer/api. I implement rewrite file article.json (where all articles) and just in case add its backup in newServer/config/articleBackUp.json**
+** all hanges you can find in newServer/api and newServer/server. I implement rewrite file article.json (where all articles) and just in case add its backup in newServer/config/articleBackUp.json**
 ###### 1. Clone this repositorie to your disk
 ```
 git clone https://github.com/SmaLLAlien/epam_fe_2019_belousov.git -b HW24-REST --single-branch
@@ -15,7 +15,7 @@ npm install
 ###### 4. go to server folder
 
 ```
-cd server
+cd newServer
 ```
 ###### 5. install packges
 ```
