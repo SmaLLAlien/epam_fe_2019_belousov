@@ -13,16 +13,24 @@ ArticleModel.find((err, users) => {
   }
   log.info('Users finds');
   articlesLength = users.length;
+  if(!articlesLength) {
+    addArticlesToBDFromFile(); // add some articles to bd, for you
+  }
 });
 
-// fs.readFile("./config/articles.json", "utf8", function (err, data) {
-//   if (err) {
-//     return console.log(err);
-//   }
-//   list = data;
-//   list = JSON.parse(list);
-//
-// });
+function addArticlesToBDFromFile(){
+  fs.readFile("./config/articles.json", "utf8", function (err, data) {
+    if (err) {
+      return console.log(err);
+    }
+    const articles = JSON.parse(data);
+    articles.forEach(article => {
+      const newArticle = ArticleModel(article);
+      newArticle.save();
+    })
+
+  });
+}
 // const names = ['all', 'bll', 'dll', 'vll'];
 // names.forEach(name => {
 //   const user = UserModel({name: `${name}`});
@@ -36,7 +44,7 @@ ArticleModel.find((err, users) => {
 //   )
 //   log.info("==Save article==");
 // })
-//
+
 
 
 router.get("/", function(req, res) {
