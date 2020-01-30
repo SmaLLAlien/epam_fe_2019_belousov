@@ -213,7 +213,14 @@ export class Post {
         headers: {'Content-Type': 'application/json'},
       })
         .then((res) => res.json())
-        .then(() => {
+        .then((res) => {
+          if (res.articles === 0) {
+            const event = new Event('noPostLeft');
+            const posts = document.getElementById('posts');
+            // eslint-disable-next-line no-console
+            console.log(posts);
+            posts.dispatchEvent(event);
+          }
           const post = this.postDeleteButton.closest('.post');
           post.remove();
         })

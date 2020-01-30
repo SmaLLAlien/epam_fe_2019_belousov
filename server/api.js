@@ -5,16 +5,24 @@ const ArticleModel = require(INCPATH + '/mongoose').ArticleModel;
 const fs = require("fs");
 const ObjectId = require(INCPATH + '/mongoose').ObjectId;
 
-let list;
+let articlesLength = 0;
 
-fs.readFile("./config/articles.json", "utf8", function (err, data) {
-  if (err) {
-    return console.log(err);
+ArticleModel.find((err, users) => {
+  if(err) {
+    log.error('Error find users in Mongo');
   }
-  list = data;
-  list = JSON.parse(list);
-
+  log.info('Users finds');
+  articlesLength = users.length;
 });
+
+// fs.readFile("./config/articles.json", "utf8", function (err, data) {
+//   if (err) {
+//     return console.log(err);
+//   }
+//   list = data;
+//   list = JSON.parse(list);
+//
+// });
 // const names = ['all', 'bll', 'dll', 'vll'];
 // names.forEach(name => {
 //   const user = UserModel({name: `${name}`});
@@ -31,7 +39,7 @@ fs.readFile("./config/articles.json", "utf8", function (err, data) {
 //
 
 
-router.get("/some-request", function(req, res) {
+router.get("/", function(req, res) {
     const user = ArticleModel({
         name: 'test'
     });
@@ -42,7 +50,7 @@ router.get("/some-request", function(req, res) {
         }
         log.info('Users finds');
         res.end(JSON.stringify(users));
-    });
+  });
 });
 
 router.get("/articles",function (req, res) {
@@ -60,6 +68,7 @@ router.get("/articles",function (req, res) {
     article.save()
       .then(article => {
         log.info("==Save article==");
+        articlesLength++;
         res.end(JSON.stringify(article))
       })
       .catch(err => {
@@ -71,6 +80,7 @@ router.get("/articles",function (req, res) {
     log.info('==Delete all articles==');
     ArticleModel.deleteMany({})
       .then(answer => {
+        articlesLength = 0;
         res.end(JSON.stringify({deleted: answer.deletedCount}));
       })
       .catch(err => log.error('Error deleting articles in Mongo' + err));
@@ -91,7 +101,8 @@ router.get("/articles",function (req, res) {
     log.info('==Delete article by id==');
     ArticleModel.deleteOne({_id: ObjectId(req.params.id)})
       .then(answer => {
-        res.end(JSON.stringify(answer.deletedCount));
+        articlesLength -= 1;
+        res.end(JSON.stringify({deleted: answer.deletedCount, articles: articlesLength}));
       })
       .catch(err => {
         console.log(err);

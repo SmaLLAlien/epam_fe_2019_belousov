@@ -242,10 +242,16 @@ function makeSectionPosts(posts) {
 
     const sectionPostsPosts = makeElement('div', 'posts');
     rowPosts.append(sectionPostsPosts);
-    postsOfArray.forEach((postJson) => {
-      const post = returnNeededTypePost(postJson);
-      post.renderBlogPost(sectionPostsPosts);
-    });
+    if (posts.length) { // check if there is any post
+      postsOfArray.forEach((postJson) => {
+        const post = returnNeededTypePost(postJson);
+        post.renderBlogPost(sectionPostsPosts);
+      });
+      // listen to delete post
+      sectionPosts.addEventListener('noPostLeft', () => makeNoPostBlock(sectionPostsPosts));
+    } else {
+      makeNoPostBlock(sectionPostsPosts);
+    }
 
     const wrapper = document.getElementsByClassName('wrapper')[0];
     fragmentPosts.append(sectionPosts);
@@ -266,6 +272,12 @@ function makePostMoreButton() {
   const postMoreButton = makeElement('button', 'posts__load');
   postMoreButton.textContent = 'Read more';
   document.getElementsByClassName('posts')[0].append(postMoreButton);
+}
+
+function makeNoPostBlock(parent) {
+  const div = makeElement('div', 'posts__absent');
+  div.textContent = 'There are no articles here, you can add new by clicking the button above';
+  parent.prepend(div);
 }
 
 /** ******************************************************************************/
