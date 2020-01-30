@@ -102,7 +102,7 @@ function addParagraph(e) {
 function closeForm(event) {
   const form = event.target.closest('.update');
   const _wrapper = document.getElementsByClassName('wrapper')[0];
-  _wrapper.style.display = 'block';
+  _wrapper.style.display = 'flex';
   form.remove();
 }
 
@@ -121,8 +121,6 @@ function buildArticle(post) {
 }
 
 function sendArticle(post) {
-  // eslint-disable-next-line no-console
-  console.log(post);
   const form = document.getElementsByClassName('update')[0];
   const url = `http://localhost:3000/api/update-articles/${form.dataset.id}`;
   fetch(url, {

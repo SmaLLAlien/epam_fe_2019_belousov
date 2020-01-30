@@ -67,7 +67,7 @@ const onSubmit = (event) => {
     })
     .then((post) => {
       const _wrapper = document.getElementsByClassName('wrapper')[0];
-      _wrapper.style.display = 'block';
+      _wrapper.style.display = 'flex';
       const form = document.getElementsByClassName('add-form')[0];
       form.remove();
       window.location.href = `./post.html?q=${post._id}`;
@@ -301,7 +301,7 @@ function hideBlock(previewContainer, contentLinkContainer) {
 function closeForm(event) {
   const form = event.target.closest('.add-form');
   const _wrapper = document.getElementsByClassName('wrapper')[0];
-  _wrapper.style.display = 'block';
+  _wrapper.style.display = 'flex';
   form.remove();
 }
 
