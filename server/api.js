@@ -7,6 +7,7 @@ const ObjectId = require(INCPATH + '/mongoose').ObjectId;
 
 let articlesLength = 0;
 
+// get articles from file and push them to bd, to make easy testing for you
 ArticleModel.find((err, users) => {
   if(err) {
     log.error('Error find users in Mongo');
@@ -24,27 +25,13 @@ function addArticlesToBDFromFile(){
       return console.log(err);
     }
     const articles = JSON.parse(data);
+    articlesLength = articles.length;
     articles.forEach(article => {
       const newArticle = ArticleModel(article);
       newArticle.save();
-    })
-
+    });
   });
 }
-// const names = ['all', 'bll', 'dll', 'vll'];
-// names.forEach(name => {
-//   const user = UserModel({name: `${name}`});
-//   user.save().then(
-//     UserModel.find((err, users) => {
-//       if(err) {
-//         log.error('Error find users in Mongo');
-//       }
-//       log.info('Users finds');
-//     })
-//   )
-//   log.info("==Save article==");
-// })
-
 
 
 router.get("/", function(req, res) {
@@ -109,7 +96,8 @@ router.get("/articles",function (req, res) {
     log.info('==Delete article by id==');
     ArticleModel.deleteOne({_id: ObjectId(req.params.id)})
       .then(answer => {
-        articlesLength -= 1;
+        articlesLength--;
+        articlesLength = articlesLength < 0 ? 0 : articlesLength;
         res.end(JSON.stringify({deleted: answer.deletedCount, articles: articlesLength}));
       })
       .catch(err => {
