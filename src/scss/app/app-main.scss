@@ -1,0 +1,29 @@
+@import "../reset";
+@import "../normilize";
+$grid-gutter-width: 40px;
+
+//## Define the breakpoints at which your layout will change, adapting to different screen sizes.
+$screen-xs:                  320px;
+$screen-sm:                  768px;
+$screen-md:                  992px;
+$screen-lg:                  1200px;
+
+//## Define the maximum width of `.container` for different screen sizes.
+
+$container-tablet: 768px;
+$container-desktop: 992px;
+$container-large-desktop: 1200px;
+
+//$screen-lg: 1000px;
+//$container-large-desktop: 1000px;
+// BOOTSTRAP
+@import "../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/variables";
+@import "../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/mixins";
+@import "../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/scaffolding";
+@import "../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/grid";
+// MY STYLES
+@import "var";
+@import "fonts";
+@import "mixins";
+@import "../updateArticle/updateUrticle";
+@import "styles";
