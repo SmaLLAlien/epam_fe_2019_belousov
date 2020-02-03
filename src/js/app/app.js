@@ -169,7 +169,7 @@ function makeSectionPost({posts, author, title}) {
 function makeSectionAside(posts) {
   const section = makeElement('section', 'aside');
   const container = makeElement('div', 'list');
-  // eslint-disable-next-line complexity
+  // eslint-disable-next-line complexity,max-statements
   container.addEventListener('click', (event) => {
     if (event.currentTarget === container && event.target.classList.contains('list__author')) {
       const previousCurrentAuthor = event.currentTarget.getElementsByClassName('currentAuthor')[0];
@@ -178,7 +178,7 @@ function makeSectionAside(posts) {
       }
       event.target.classList.add('currentAuthor');
       const author = event.target.textContent;
-      event.currentTarget.setAttribute('data-author', `${author}`);
+      event.target.setAttribute('data-author', `${author}`);
       mediator.publish('authorClicked', {posts, author});
     } else if (event.currentTarget === container && event.target.classList.contains('list__title')) {
       const previousCurrent = event.currentTarget.getElementsByClassName('currentTitle')[0];
@@ -186,7 +186,7 @@ function makeSectionAside(posts) {
         previousCurrent.classList.remove('currentTitle');
       }
       event.target.classList.add('currentTitle');
-      const author = event.target.closest('.list').dataset.author;
+      const author = event.target.closest('.list__item').getElementsByClassName('currentAuthor')[0].textContent;
       const title = event.target.textContent;
       mediator.publish('titleClicked', {posts, author, title});
     }
