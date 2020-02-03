@@ -58,12 +58,17 @@ router.get("/articles",function (req, res) {
     res.end(JSON.stringify(articleById));
   });
 
-  router.delete("/delete-articles/:id", function (req, res) {
+ router.delete("/delete-articles/:id", function (req, res) {
     log.info('==Delete article by id==');
-    const articleIndexById = list.findIndex(article => +article.id === +req.params.id);
-
-    if (articleIndexById !== -1) {
-      list.splice(articleIndexById, 1); // delete post
+    const previousLength = list.length;
+    list = list.filter(article => {
+      if (+article.id !== +req.params.id) {
+        return article;
+      }
+    });
+    if (previousLength === list.length) {
+      res.sendStatus(404);
+    } else {
       // rewrite data in file
       fs.writeFile('./config/articles.json', JSON.stringify(list), (err) => {
         if (err) {
@@ -71,9 +76,8 @@ router.get("/articles",function (req, res) {
           return
         }
       });
+      res.end(JSON.stringify(list));
     }
-
-    res.end(JSON.stringify(articleIndexById));
   });
 
   router.put("/update-articles/:id", function (req, res) {
