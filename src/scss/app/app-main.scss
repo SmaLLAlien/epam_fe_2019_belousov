@@ -25,5 +25,6 @@ $container-large-desktop: 1200px;
 @import "var";
 @import "fonts";
 @import "mixins";
+@import "../modal/modal";
 @import "../updateArticle/updateUrticle";
 @import "styles";

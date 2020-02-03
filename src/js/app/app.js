@@ -50,8 +50,6 @@ function makeAppWraper(posts) {
   const appWrapper = makeElement('section', 'appWrapper');
   const authorUpSection = makeAuthorUp(posts);
   const mainSection = makeSectionMain(posts);
-  // const posts = makeElement('div', 'posts');
-  // innerWrapper.append(posts);
   appWrapper.append(authorUpSection);
   appWrapper.append(mainSection);
   return appWrapper;
@@ -144,6 +142,9 @@ function highlightUpTitle({title}) {
 function makeSectionMain(posts) {
   const main = makeElement('section', 'main');
   const post = makeElement('div', 'posts');
+  const defaultPicture = makeElement('img', 'posts__default');
+  defaultPicture.src = 'https://miro.medium.com/max/3200/1*J1DCNQGwBsRPRS5t0bhoig.jpeg';
+  post.append(defaultPicture);
   post.id = 'postContainer';
   const aside = makeSectionAside(posts);
 
@@ -156,7 +157,6 @@ function makeSectionMain(posts) {
 function makeSectionPost({posts, author, title}) {
   const postContainer = document.getElementById('postContainer');
   postContainer.innerHTML = '';
-  // eslint-disable-next-line no-console
   const articlesArray = posts.get(author);
   articlesArray.forEach((article) => {
     if (article.title === title) {
@@ -164,15 +164,6 @@ function makeSectionPost({posts, author, title}) {
       post.renderBlogPost(postContainer);
     }
   });
-  // const postsDiv = document.getElementsByClassName('posts')[0];
-  // const posts = data;
-  // const postsOfArray = [...posts];
-  // if (posts.length) { // check if there is any post
-  //   postsOfArray.forEach((postJson) => {
-  //     const post = returnNeededTypePost(postJson);
-  //     post.renderBlogPost(postsDiv);
-  //   });
-  // }
 }
 
 function makeSectionAside(posts) {

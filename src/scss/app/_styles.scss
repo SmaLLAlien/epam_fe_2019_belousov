@@ -187,6 +187,11 @@ body {
   margin-top: 10px;
   margin-bottom: 80px;
 
+  &__default {
+    width: 100%;
+    height: auto;
+  }
+
   .post {
     border-radius: 5px;
     background: $descriptionBackground;
