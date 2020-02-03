@@ -79,9 +79,9 @@ router.get("/articles",function (req, res) {
   router.put("/update-articles/:id", function (req, res) {
     log.info('==Update article by id==');
     const articleIndexById = list.findIndex(article => +article.id === +req.params.id);
-    list[articleIndexById] = req.params;
 
     if (articleIndexById !== -1) {
+      list[articleIndexById] = req.body;
       // rewrite data in file
       fs.writeFile('./config/articles.json', JSON.stringify(list), (err) => {
         if (err) {
@@ -89,9 +89,10 @@ router.get("/articles",function (req, res) {
           return
         }
       });
+      res.end(JSON.stringify(list[articleIndexById]));
+    } else {
+      res.sendStatus(404);
     }
-
-    res.end(JSON.stringify(list[articleIndexById]));
   });
 
 
