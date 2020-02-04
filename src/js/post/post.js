@@ -6,7 +6,7 @@ import {VideoPost, AudioPost, PicturePost, TextPost} from '../postClass.js';
 document.addEventListener('DOMContentLoaded', main);
 function main() {
   const param = +window.location.search.substr(3);
-  const urlPosts = 'http://localhost:3000/api/list/';
+  const urlPosts = 'http://localhost:3000/api/articles/';
   const urlData = 'js/post/data-post.json';
 
   const getPost = (url, q = '') => {

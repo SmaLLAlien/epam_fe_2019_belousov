@@ -3,6 +3,7 @@ const common = require('./webpack.base.js');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const minifyHTML = {
   html5: true,
@@ -23,7 +24,32 @@ const minifyHTML = {
 module.exports = merge(common, {
   mode: 'production',
   devtool: 'source-map',
+  module: {
+    rules: [
+      {
+        test: /\.scss$/,
+        exclude: /node_modules/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              url: false,
+              sourceMap: true,
+            },
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
+        ],
+      },
+    ],
+  },
   plugins: [
+    new MiniCssExtractPlugin({filename: 'css/[name]/[name].min.css'}),
     new CleanWebpackPlugin(),
     new UglifyJsPlugin(),
     new HtmlWebpackPlugin({

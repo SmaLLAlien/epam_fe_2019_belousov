@@ -22,6 +22,7 @@ module.exports = {
         options: {
           fix: true,
           failOnError: true,
+          quiet: true,
         },
       },
       {
@@ -33,27 +34,6 @@ module.exports = {
             presets: ['@babel/preset-env'],
           },
         },
-      },
-      {
-        test: /\.(sa|sc|c)ss$/,
-        exclude: /node_modules/,
-        use: [
-          {
-            loader: 'style-loader',
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              sourceMap: true,
-            },
-          },
-          {
-            loader: 'sass-loader',
-            options: {
-              sourceMap: true,
-            },
-          },
-        ],
       },
       {
         test: /\.(eot|ttf|woff|woff2)$/,
@@ -92,6 +72,10 @@ module.exports = {
       {
         from: 'img',
         to: 'img',
+      },
+      {
+        from: 'fonts',
+        to: 'fonts',
       },
     ], {context: 'src'}),
   ],

@@ -5,7 +5,7 @@ import {makeAddPostElement} from '../addPost.js';
 import {VideoPost, AudioPost, PicturePost, TextPost} from '../postClass.js';
 
 function main() {
-  const url = 'http://localhost:3000/api/list';
+  const url = 'http://localhost:3000/api/articles';
   const urlBlog = 'js/blog/data-blog.json';
 
   const getData = (url) => {

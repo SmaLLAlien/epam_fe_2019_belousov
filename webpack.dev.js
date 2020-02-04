@@ -6,6 +6,32 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = merge(common, {
   mode: 'development',
   devtool: 'inline-source-map',
+  module: {
+    rules: [
+      {
+        test: /\.(sa|sc|c)ss$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              url: true,
+              sourceMap: true,
+            },
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
+        ],
+      },
+    ],
+  },
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     compress: true,

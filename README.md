@@ -1,7 +1,8 @@
 
+** all hanges you can find in server/api and server/server. I implement rewrite file article.json (where all articles) and just in case add its backup in newServer/config/articleBackUp.json**
 ###### 1. Clone this repositorie to your disk
 ```
-git clone https://github.com/SmaLLAlien/epam_fe_2019_belousov.git -b HW23-Tools --single-branch
+git clone https://github.com/SmaLLAlien/epam_fe_2019_belousov.git -b HW24-REST --single-branch
 
 ```
 ###### 2. Go inside project folder
@@ -38,5 +39,7 @@ npm run build | npm run dev
 ###### 10. if you run build, open index.html from dist/
 
 ** TO MAKE IT WORK, PLEASE RUN SERVER, IF YOU DONT USE WEBSTORM **
+
+
 
 
