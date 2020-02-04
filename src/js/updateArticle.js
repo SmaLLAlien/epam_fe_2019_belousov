@@ -16,9 +16,9 @@ function createForm(post) {
   title.textContent = 'Update article description';
   form.append(title);
 
-  for (const key in desc) {
-    // eslint-disable-next-line no-prototype-builtins
-    if (desc.hasOwnProperty(key) && key !== 'time' && desc[key].length) {
+  const keys = Object.keys(desc);
+  keys.forEach((key) => {
+    if (key !== 'time' && desc[key].length) {
       // dont display time and empty keys
       const tag = key.match(/[a-z]{6,}/g)[0];
       const textArea = makeElem('textarea', `update__${tag}`);
@@ -29,7 +29,7 @@ function createForm(post) {
       form.append(textArea);
       form.append(descAddContainer);
     }
-  }
+  });
 
   const buttonsContainer = createButtons(post);
   form.append(buttonsContainer);
