@@ -14,9 +14,28 @@ db.once('open', function callback () {
 });
 
 const Schema = mongoose.Schema;
+const ObjectId = mongoose.Types.ObjectId;
 
-const User = new Schema({
-    name: { type: String, default : '' }
+const Article = new Schema({
+  type: String, default : 'Text',
+  url: String , default : '',
+  title: String, default : '',
+  author: String , default : '',
+  authorPhoto: String , default : '',
+  date: String, default : '',
+  time: String, default : '',
+  quote: String, default : '',
+  urlPreview: String, default : '',
+  commentsCount: String, default : '',
+  stars: String, default : '',
+  like: String, default : '',
+  likesCounter: Number, default : 0,
+  facebook: String, default : '',
+  insta: String, default : '',
+  basket: String, default : '',
+  commentsIcon: String, default : '',
+  desc: {}, default : {}
 });
 
-module.exports.UserModel = mongoose.model('User', User);
+module.exports.ArticleModel = mongoose.model('Article', Article);
+module.exports.ObjectId = ObjectId;

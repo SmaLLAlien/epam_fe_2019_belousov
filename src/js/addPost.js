@@ -1,4 +1,3 @@
-
 const makeElem = (elementType, elementClass) => {
   const element = document.createElement(elementType);
   element.classList.add(elementClass);
@@ -44,7 +43,6 @@ const onSubmit = (event) => {
   const desc = getDataFromDescription();
   const quote = event.target.quote.value;
   const additionalInfo = {
-    id: Date.now(),
     likesCounter: 0,
     facebook: 'img/blog/a-icon-facebook.svg',
     insta: 'img/blog/a-icon-instagram.svg',
@@ -63,12 +61,15 @@ const onSubmit = (event) => {
   sendPost(ref, JSON.stringify(obj))
     .then((res) => {
       if (res.ok) {
-        const _wrapper = document.getElementsByClassName('wrapper')[0];
-        _wrapper.style.display = 'block';
-        const form = document.getElementsByClassName('add-form')[0];
-        form.remove();
-        window.location.href = `./post.html?q=${obj.id}`;
+        return res.json();
       }
+    })
+    .then((post) => {
+      const _wrapper = document.getElementsByClassName('wrapper')[0];
+      _wrapper.style.display = 'flex';
+      const form = document.getElementsByClassName('add-form')[0];
+      form.remove();
+      window.location.href = `./post.html?q=${post._id}`;
     })
     .catch((error) => {alert(error);});
 };
@@ -299,7 +300,7 @@ function hideBlock(previewContainer, contentLinkContainer) {
 function closeForm(event) {
   const form = event.target.closest('.add-form');
   const _wrapper = document.getElementsByClassName('wrapper')[0];
-  _wrapper.style.display = 'block';
+  _wrapper.style.display = 'flex';
   form.remove();
 }
 

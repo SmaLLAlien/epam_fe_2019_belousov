@@ -1,6 +1,7 @@
 (function ($) {
   const modalObj = {
-    createModal(type, title, buttons) {
+    createModal(type, title, buttons, reason) {
+      this.reason = reason;
       this.modalDiv = $('<div class="modal"></div>');
       const modalClose = $('<span class="modal__close">&times;</span>');
       this.modalDiv.append(modalClose);
@@ -52,8 +53,11 @@
       });
     },
     confirmed() {
-      // eslint-disable-next-line no-console
-      console.log('Approved');
+      const reason = this.reason;
+      const event = new CustomEvent('modalClosed', {
+        detail: {reason},
+      });
+      document.body.dispatchEvent(event);
       this.closeModal();
     },
     canceled() {
@@ -88,15 +92,15 @@
   };
 
   // eslint-disable-next-line max-params
-  $.fn.modal = function (type, title, buttons, timeout) {
+  $.fn.modal = function (type, title, buttons, reason, timeout) {
     if (timeout) {
       setTimeout(() => {
         if (!$('body').hasClass('modalOpen')) {
-          modalObj.createModal(type, title, buttons);
+          modalObj.createModal(type, title, buttons, reason);
         }
       },timeout);
     } else {
-      modalObj.createModal(type, title, buttons);
+      modalObj.createModal(type, title, buttons, reason);
     }
   };
 // eslint-disable-next-line no-undef

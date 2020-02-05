@@ -1,0 +1,85 @@
+.update {
+  width: 70%;
+  font-size: 1rem;
+  color: $textColor;
+  box-sizing: border-box;
+  transition: all 1s;
+  margin: 0 auto;
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__title {
+    margin-bottom: 20px;
+  }
+
+  &__header,
+  &__paragraph {
+    width: 100%;
+    height: 45px;
+    font-size: 1.0625rem;
+    border: 1px solid $borderFormInputColor;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    outline: none;
+  }
+
+  &__header {
+    height: 50px;
+    resize: vertical;
+  }
+
+  &__paragraph {
+    height: 100px;
+    resize: vertical;
+  }
+
+  &__paragraph:focus,
+  &__header:focus {
+    outline: none;
+    border-color: $borderFormInputColorFocused;
+  }
+
+  &__paragraph:hover,
+  &__header:hover {
+    outline: none;
+    border-color: $borderFormInputColorFocused;
+  }
+
+  &__button-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 80px;
+  }
+
+  &__button,
+  &__reset-button,
+  &__close-button {
+    @include button;
+
+    margin-right: 10px;
+  }
+
+  &__button:hover,
+  &__reset-button:hover,
+  &__close-button:hover {
+    @include buttonHover;
+  }
+
+  &__add-btn {
+    padding: 5px 10px;
+    outline: none;
+    border: none;
+    background: #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+
+  &__desc-add {
+    margin-bottom: 30px;
+  }
+}

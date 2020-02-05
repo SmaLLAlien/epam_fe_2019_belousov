@@ -1,8 +1,9 @@
 
-** all hanges you can find in server/api and server/server. I implement rewrite file article.json (where all articles) and just in case add its backup in newServer/config/articleBackUp.json**
+** all main changes you can find in server/api and server/lib/mongoose. I implement adding articles to bd from starting server to make it easy for testing some features**
+**You need to install mongodb and run it before starting project and server**
 ###### 1. Clone this repositorie to your disk
 ```
-git clone https://github.com/SmaLLAlien/epam_fe_2019_belousov.git -b HW24-REST --single-branch
+git clone https://github.com/SmaLLAlien/epam_fe_2019_belousov.git -b HW25-Mongo --single-branch
 
 ```
 ###### 2. Go inside project folder

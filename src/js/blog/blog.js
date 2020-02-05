@@ -72,7 +72,7 @@ function findPosts(posts, searchValue, searchedProperty) {
 function showSubscribeModal() {
   const title = 'Subscribe to this blog and be the first to know about updates';
   // eslint-disable-next-line no-undef
-  $.fn.modal('success', `${title}`, ['ok', 'cancel'], 10000);
+  $.fn.modal('success', `${title}`, ['ok', 'cancel'], 'subscribe', 10000);
 }
 
 function makeSectionBlog(data) {
@@ -242,10 +242,16 @@ function makeSectionPosts(posts) {
 
     const sectionPostsPosts = makeElement('div', 'posts');
     rowPosts.append(sectionPostsPosts);
-    postsOfArray.forEach((postJson) => {
-      const post = returnNeededTypePost(postJson);
-      post.renderBlogPost(sectionPostsPosts);
-    });
+    if (posts.length) { // check if there is any post
+      postsOfArray.forEach((postJson) => {
+        const post = returnNeededTypePost(postJson);
+        post.renderBlogPost(sectionPostsPosts);
+      });
+      // listen to delete post
+      sectionPosts.addEventListener('noPostLeft', () => makeNoPostBlock(sectionPostsPosts));
+    } else {
+      makeNoPostBlock(sectionPostsPosts);
+    }
 
     const wrapper = document.getElementsByClassName('wrapper')[0];
     fragmentPosts.append(sectionPosts);
@@ -266,6 +272,12 @@ function makePostMoreButton() {
   const postMoreButton = makeElement('button', 'posts__load');
   postMoreButton.textContent = 'Read more';
   document.getElementsByClassName('posts')[0].append(postMoreButton);
+}
+
+function makeNoPostBlock(parent) {
+  const div = makeElement('div', 'posts__absent');
+  div.textContent = 'There are no articles here, you can add new by clicking the button above';
+  parent.prepend(div);
 }
 
 /** ******************************************************************************/
@@ -291,12 +303,3 @@ function makeToHome() {
   fragmentToHome.append(toHome);
   document.body.append(fragmentToHome);
 }
-
-// $(document).ready(() => {
-//  setTimeout(function () {
-//    console.log($('.post__preview'));
-//    $('.post__preview').click(function () {
-//      $.fn.modal('success', 'hellohellohellohellohellohellohellohello', ['ok', 'cancel'])
-//    });
-//  }, 3000)
-// });

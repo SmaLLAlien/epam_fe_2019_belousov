@@ -1,102 +1,121 @@
 const log = require( INCPATH + '/log')(module);
 const express = require('express');
 const router = express.Router();
-// const UserModel = require(INCPATH + '/mongoose').UserModel;
+const ArticleModel = require(INCPATH + '/mongoose').ArticleModel;
 const fs = require("fs");
+const ObjectId = require(INCPATH + '/mongoose').ObjectId;
 
-let list;
+let articlesLength = 0;
 
-fs.readFile("./config/articles.json", "utf8", function (err, data) {
-  if (err) {
-    return console.log(err);
+// get articles from file and push them to bd, to make easy testing for you
+ArticleModel.find((err, users) => {
+  if(err) {
+    return log.error('Error find users in Mongo');
   }
-  list = data;
-  list = JSON.parse(list);
-
+  log.info('Users finds');
+  articlesLength = users.length;
+  if(!articlesLength) {
+    addArticlesToBDFromFile(); // add some articles to bd, for you
+  }
 });
 
+function addArticlesToBDFromFile(){
+  fs.readFile("./config/articles.json", "utf8", function (err, data) {
+    if (err) {
+      return console.log(err);
+    }
+    const articles = JSON.parse(data);
+    articlesLength = articles.length;
+    articles.forEach(article => {
+      const newArticle = ArticleModel(article);
+      newArticle.save();
+    });
+  });
+}
 
-router.get("/some-request", function(req, res) {
-    const user = UserModel({
+
+router.get("/", function(req, res) {
+    const user = ArticleModel({
         name: 'test'
     });
 
-    UserModel.find((err, users) => {
+  ArticleModel.find((err, users) => {
         if(err) {
-            log.error('Error find users in Mongo');
+            return log.error('Error find users in Mongo');
         }
         log.info('Users finds');
         res.end(JSON.stringify(users));
-    });
+  });
 });
 
 router.get("/articles",function (req, res) {
     log.info("==Get all list articles==");
-    res.end(JSON.stringify(list));
+  ArticleModel.find()
+    .then(articles => {
+    log.info('Articles finds');
+    res.end(JSON.stringify(articles));
+  })
+    .catch(err => log.error('Error find articles in Mongo' + err));
   });
+
   router.post("/create-article",function (req, res) {
-    log.info("==Save article==");
-    list.push(req.body);
-    res.end(JSON.stringify(list));
+    const article = ArticleModel(req.body);
+    article.save()
+      .then(article => {
+        log.info("==Save article==");
+        articlesLength++;
+        res.end(JSON.stringify(article))
+      })
+      .catch(err => {
+        log.error('Error save articles in Mongo' + err)
+      });
   });
+
   router.delete("/delete-articles", function (req, res) {
     log.info('==Delete all articles==');
-    list = [];
-    // remove data from file
-    fs.writeFile('./config/articles.json', JSON.stringify([{}]), (err) => {
-      if (err) {
-        console.error(err)
-        return
-      }
-    });
-    res.end(JSON.stringify(list));
+    ArticleModel.deleteMany({})
+      .then(answer => {
+        articlesLength = 0;
+        res.end(JSON.stringify({deleted: answer.deletedCount}));
+      })
+      .catch(err => log.error('Error deleting articles in Mongo' + err));
+
   });
 
   router.get("/articles/:id", function (req, res) {
     log.info("==Get article by id==");
-    const articleById = list.find(article => +article.id === +req.params.id);
-    res.end(JSON.stringify(articleById));
+
+    ArticleModel.findOne({_id: ObjectId(req.params.id)})
+      .then(article => {
+        res.end(JSON.stringify(article))
+      })
+      .catch(err => log.error('Error finding article in Mongo' + err));
   });
 
- router.delete("/delete-articles/:id", function (req, res) {
+  router.delete("/delete-articles/:id", function (req, res) {
     log.info('==Delete article by id==');
-    const previousLength = list.length;
-    list = list.filter(article => {
-      if (+article.id !== +req.params.id) {
-        return article;
-      }
-    });
-    if (previousLength === list.length) {
-      res.sendStatus(404);
-    } else {
-      // rewrite data in file
-      fs.writeFile('./config/articles.json', JSON.stringify(list), (err) => {
-        if (err) {
-          console.error(err)
-          return
-        }
+    ArticleModel.deleteOne({_id: ObjectId(req.params.id)})
+      .then(answer => {
+        articlesLength--;
+        articlesLength = articlesLength < 0 ? 0 : articlesLength;
+        res.end(JSON.stringify({deleted: answer.deletedCount, articles: articlesLength}));
+      })
+      .catch(err => {
+        console.log(err);
       });
-      res.end(JSON.stringify(list));
-    }
   });
 
   router.put("/update-articles/:id", function (req, res) {
     log.info('==Update article by id==');
-    const articleIndexById = list.findIndex(article => +article.id === +req.params.id);
 
-    if (articleIndexById !== -1) {
-      list[articleIndexById] = req.body;
-      // rewrite data in file
-      fs.writeFile('./config/articles.json', JSON.stringify(list), (err) => {
-        if (err) {
-          console.error(err)
-          return
-        }
+    ArticleModel.updateOne({_id: ObjectId(req.params.id)}, req.body)
+      .then( answer => {
+        console.log(answer);
+        res.end(JSON.stringify({modified: answer.ok}));
+      })
+      .catch(err => {
+        console.log(err);
       });
-      res.end(JSON.stringify(list[articleIndexById]));
-    } else {
-      res.sendStatus(404);
-    }
   });
 
 

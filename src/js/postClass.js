@@ -1,3 +1,5 @@
+import {updatePost} from './updateArticle';
+
 export class Post {
   constructor(obj) {
     this.data = obj;
@@ -113,7 +115,8 @@ export class Post {
       let paragraph = '';
       for (const text in desc) {
         // get first paragraph
-        if (text.substring(0, text.length - 1) === 'paragraph') {
+
+        if (text.match(/[a-z]{4,}/g)[0] === 'paragraph') {
           paragraph = desc[text];
           break;
         }
@@ -147,7 +150,7 @@ export class Post {
     function makePostDescriptionButton(postJson) {
       // add button to read more
       self.postDescriptionButton = makeElement('button', 'post__button');
-      self.postDescriptionButton.setAttribute('data-post-id', postJson.id);
+      self.postDescriptionButton.setAttribute('data-post-id', postJson._id);
       self.postDescriptionButton.textContent = 'Read more';
       // self.postDescriptionButton.addEventListener('click', () => window.location.href = `./post.html?q=${postJson.id}`);
       return self.postDescriptionButton;
@@ -156,11 +159,20 @@ export class Post {
     function makePostDeleteButton(postJson) {
       // add  delete post button
       self.postDeleteButton = makeElement('button', 'post__button');
-      self.postDeleteButton.setAttribute('data-post-id', postJson.id);
+      self.postDeleteButton.setAttribute('data-post-id', postJson._id);
       self.postDeleteButton.textContent = 'Delete post';
       return self.postDeleteButton;
     }
 
+    function makePostUpdateButton(postJson) {
+      // add  update  post button
+      self.postUpdateButton = makeElement('button', 'post__button');
+      self.postUpdateButton.setAttribute('data-post-id', postJson._id);
+      self.postUpdateButton.textContent = 'Update post';
+      return self.postUpdateButton;
+    }
+
+    // eslint-disable-next-line max-statements
     function makePostDescription(postJson) {
       const postDescription = makeElement('div', 'post__description');
 
@@ -184,7 +196,38 @@ export class Post {
       const postDeleteButton = makePostDeleteButton(postJson);
       postDescription.append(postDeleteButton);
 
+      const posUpdateButton = makePostUpdateButton(postJson);
+      postDescription.append(posUpdateButton);
+
       return postDescription;
+    }
+  }
+
+  deletePost(event) {
+    const reason = event.detail.reason;
+    if (reason === 'deletePost') {
+      const id = this.postDeleteButton.getAttribute('data-post-id');
+      const url = `http://localhost:3000/api/delete-articles/${id}`;
+      fetch(url, {
+        method: 'DELETE',
+        headers: {'Content-Type': 'application/json'},
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          if (res.articles === 0) {
+            const event = new Event('noPostLeft');
+            const posts = document.getElementById('posts');
+            // eslint-disable-next-line no-console
+            console.log(posts);
+            posts.dispatchEvent(event);
+          }
+          const post = this.postDeleteButton.closest('.post');
+          post.remove();
+        })
+        .catch((err) => {
+          // eslint-disable-next-line no-console
+          console.log(err);
+        });
     }
   }
 
@@ -196,7 +239,11 @@ export class Post {
     this.postDescriptionButton.addEventListener('click', (event) => window.location.href = `post.html?q=${this._getId(event)}`);
     this.postDeleteButton.addEventListener('click', () => {
       // eslint-disable-next-line no-undef
-      $.fn.modal('error','Are you sure you want to delete this post?', ['ok', 'cancel']);
+      $.fn.modal('error','Are you sure you want to delete this post?', ['ok', 'cancel'], 'deletePost');
+      document.body.addEventListener('modalClosed', this.deletePost.bind(this), {once: true});
+    });
+    this.postUpdateButton.addEventListener('click', () => {
+      updatePost(this.data);
     });
   }
 
@@ -334,12 +381,12 @@ export class Post {
       const postText = makeElement('div', 'post__text');
 
       for (const text in data.desc) {
-        if (text.substring(0, text.length - 1) === 'paragraph') {
+        if (text.match(/[a-z]{4,}/g)[0] === 'paragraph') {
           const postParagraph = makeElement('p', 'post__paragraph');
           postParagraph.append(data.desc[text]);
           postText.append(postParagraph);
         }
-        if (text.substring(0, text.length - 1) === 'header') {
+        if (text.match(/[a-z]{4,}/g)[0] === 'header') {
           const postHeader = makeElement('h2', 'post__header');
           postHeader.textContent = data.desc[text].toString();
           postText.append(postHeader);

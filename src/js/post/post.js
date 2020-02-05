@@ -5,7 +5,7 @@ import {VideoPost, AudioPost, PicturePost, TextPost} from '../postClass.js';
 
 document.addEventListener('DOMContentLoaded', main);
 function main() {
-  const param = +window.location.search.substr(3);
+  const param = window.location.search.substr(3);
   const urlPosts = 'http://localhost:3000/api/articles/';
   const urlData = 'js/post/data-post.json';
 
@@ -27,7 +27,8 @@ function main() {
         const postJson = responses[1];
         makePage(data, postJson);
       })
-      .catch((e) => alert(e));
+      // eslint-disable-next-line no-console
+      .catch((e) => console.log(e));
   }
   else {
     // show top post by likes
@@ -41,7 +42,7 @@ function main() {
         let id = -1;
         resPost.forEach((obj, index) => {
           // get top post by likes
-          if (parseInt(obj.likesCounter) > max) {
+          if (parseInt(obj.likesCounter) >= max) {
             max = parseInt(obj.likesCounter);
             id = index;
           }
@@ -51,7 +52,8 @@ function main() {
         makePage(data, postJson);
       })
       .catch((error) => {
-        alert(`${error.message} check if you run server`);
+        // eslint-disable-next-line no-console
+        console.log(`${error.stack} check if you run server`);
       });
   }
 }
