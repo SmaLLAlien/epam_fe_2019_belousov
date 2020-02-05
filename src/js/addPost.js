@@ -1,4 +1,3 @@
-
 const makeElem = (elementType, elementClass) => {
   const element = document.createElement(elementType);
   element.classList.add(elementClass);
