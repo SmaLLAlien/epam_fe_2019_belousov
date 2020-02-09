@@ -24,8 +24,8 @@ function main() {
       mediator.subscribe('authorClicked', makeTitleAsideSection);
       mediator.subscribe('titleClicked', highlightUpTitle);
       mediator.subscribe('titleClicked', makeSectionPost);
-      const wrapper = document.getElementsByClassName('wrapper')[0];
-      const footer = document.getElementsByClassName('footer')[0];
+      const wrapper = document.querySelector('.wrapper');
+      const footer = document.querySelector('.footer');
       const appWrapper = makeAppWraper(posts);
 
       wrapper.append(appWrapper);
@@ -60,7 +60,7 @@ function makeAuthorUp(posts) {
   const container = makeElement('div', 'author-up__container');
   container.addEventListener('click', (event) => {
     if (event.currentTarget === container && event.target !== container) {
-      const previousCurrentAuthor = event.currentTarget.getElementsByClassName('currentAuthor')[0];
+      const previousCurrentAuthor = event.currentTarget.querySelector('currentAuthor');
       if (previousCurrentAuthor) {
         previousCurrentAuthor.classList.remove('currentAuthor');
       }
@@ -83,8 +83,8 @@ function makeAuthorUp(posts) {
 
 // eslint-disable-next-line max-statements
 function makeTitleUpSection({posts, author}) {
-  const authorSection = document.getElementsByClassName('author-up')[0];
-  const titleSection = authorSection.getElementsByClassName('titleUp')[0];
+  const authorSection = document.querySelector('.author-up');
+  const titleSection = authorSection.querySelector('.titleUp');
   if (titleSection) {
     titleSection.remove();
   }
@@ -120,7 +120,7 @@ function makeTitleUpSection({posts, author}) {
 }
 
 function highlightUpTitle({title}) {
-  const titleUpContainer = document.getElementsByClassName('titleUp__container')[0];
+  const titleUpContainer = document.querySelector('.titleUp__container');
   [...titleUpContainer.children].forEach((titleDiv) => {
     if (titleDiv.textContent === title) {
       titleDiv.classList.add('currentTitle');
@@ -129,7 +129,7 @@ function highlightUpTitle({title}) {
     }
   });
 
-  const titleAsideContainer = document.getElementsByClassName('list__title-container')[0];
+  const titleAsideContainer = document.querySelector('.list__title-container');
   [...titleAsideContainer.children].forEach((titleDiv) => {
     if (titleDiv.textContent === title) {
       titleDiv.classList.add('currentTitle');
@@ -172,7 +172,7 @@ function makeSectionAside(posts) {
   // eslint-disable-next-line complexity,max-statements
   container.addEventListener('click', (event) => {
     if (event.currentTarget === container && event.target.classList.contains('list__author')) {
-      const previousCurrentAuthor = event.currentTarget.getElementsByClassName('currentAuthor')[0];
+      const previousCurrentAuthor = event.currentTarget.querySelector('.currentAuthor');
       if (previousCurrentAuthor) {
         previousCurrentAuthor.classList.remove('currentAuthor');
       }
@@ -181,12 +181,12 @@ function makeSectionAside(posts) {
       event.target.setAttribute('data-author', `${author}`);
       mediator.publish('authorClicked', {posts, author});
     } else if (event.currentTarget === container && event.target.classList.contains('list__title')) {
-      const previousCurrent = event.currentTarget.getElementsByClassName('currentTitle')[0];
+      const previousCurrent = event.currentTarget.querySelector('.currentTitle');
       if (previousCurrent) {
         previousCurrent.classList.remove('currentTitle');
       }
       event.target.classList.add('currentTitle');
-      const author = event.target.closest('.list__item').getElementsByClassName('currentAuthor')[0].textContent;
+      const author = event.target.closest('.list__item').querySelector('.currentAuthor').textContent;
       const title = event.target.textContent;
       mediator.publish('titleClicked', {posts, author, title});
     }
@@ -206,10 +206,10 @@ function makeSectionAside(posts) {
 }
 
 function makeTitleAsideSection({posts, author}) {
-  const authorSection = document.getElementsByClassName('list')[0];
+  const authorSection = document.querySelector('.list');
   const asidePostBlockArray = [...document.getElementsByClassName('list__author')];
 
-  const titleSection = authorSection.getElementsByClassName('list__title-container')[0];
+  const titleSection = authorSection.querySelector('.list__title-container');
   if (titleSection) {
     titleSection.remove();
   }
