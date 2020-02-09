@@ -58,14 +58,14 @@ function makeAppWraper(posts) {
 function makeAuthorUp(posts) {
   const section = makeElement('section', 'author-up');
   const container = makeElement('div', 'author-up__container');
-  container.addEventListener('click', (event) => {
-    if (event.currentTarget === container && event.target !== container) {
-      const previousCurrentAuthor = event.currentTarget.querySelector('currentAuthor');
+  container.addEventListener('click', ({target, currentTarget}) => {
+    if (currentTarget === container && target !== container) {
+      const previousCurrentAuthor = currentTarget.querySelector('currentAuthor');
       if (previousCurrentAuthor) {
         previousCurrentAuthor.classList.remove('currentAuthor');
       }
-      event.target.classList.add('currentAuthor');
-      const author = event.target.textContent;
+      target.classList.add('currentAuthor');
+      const author = target.textContent;
       mediator.publish('authorClicked', {posts, author});
     }
   });
@@ -107,10 +107,10 @@ function makeTitleUpSection({posts, author}) {
       authorDiv.classList.remove('currentAuthor');
     }
   });
-  container.addEventListener('click', (event) => {
-    if (event.currentTarget === container && event.target !== container) {
-      event.target.classList.add('currentTitle');
-      const title = event.target.textContent;
+  container.addEventListener('click', ({target, currentTarget}) => {
+    if (currentTarget === container && target !== container) {
+      target.classList.add('currentTitle');
+      const title = target.textContent;
       mediator.publish('titleClicked', {posts, author, title});
     }
   });
@@ -170,24 +170,25 @@ function makeSectionAside(posts) {
   const section = makeElement('section', 'aside');
   const container = makeElement('div', 'list');
   // eslint-disable-next-line complexity,max-statements
-  container.addEventListener('click', (event) => {
-    if (event.currentTarget === container && event.target.classList.contains('list__author')) {
-      const previousCurrentAuthor = event.currentTarget.querySelector('.currentAuthor');
+  container.addEventListener('click', ({target, currentTarget}) => {
+    if (currentTarget === container && target.classList.contains('list__author')) {
+      const previousCurrentAuthor = currentTarget.querySelector('.currentAuthor');
       if (previousCurrentAuthor) {
         previousCurrentAuthor.classList.remove('currentAuthor');
       }
-      event.target.classList.add('currentAuthor');
-      const author = event.target.textContent;
-      event.target.setAttribute('data-author', `${author}`);
+      target.classList.add('currentAuthor');
+      const author = target.textContent;
+      target.setAttribute('data-author', `${author}`);
       mediator.publish('authorClicked', {posts, author});
-    } else if (event.currentTarget === container && event.target.classList.contains('list__title')) {
-      const previousCurrent = event.currentTarget.querySelector('.currentTitle');
+    } else if (currentTarget === container && target.classList.contains('list__title')) {
+      const previousCurrent = currentTarget.querySelector('.currentTitle');
       if (previousCurrent) {
         previousCurrent.classList.remove('currentTitle');
       }
-      event.target.classList.add('currentTitle');
-      const author = event.target.closest('.list__item').querySelector('.currentAuthor').textContent;
-      const title = event.target.textContent;
+      target.classList.add('currentTitle');
+      const author = target.closest('.list__item').querySelector('.currentAuthor').textContent;
+
+      const title = target.textContent;
       mediator.publish('titleClicked', {posts, author, title});
     }
   });
