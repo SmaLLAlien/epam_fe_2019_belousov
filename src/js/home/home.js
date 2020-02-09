@@ -835,4 +835,3 @@ function makeToHome() {
   fragmentToHome.append(toHome);
   document.body.append(fragmentToHome);
 }
-

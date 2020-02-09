@@ -303,12 +303,3 @@ function makeToHome() {
   fragmentToHome.append(toHome);
   document.body.append(fragmentToHome);
 }
-
-// $(document).ready(() => {
-//  setTimeout(function () {
-//    console.log($('.post__preview'));
-//    $('.post__preview').click(function () {
-//      $.fn.modal('success', 'hellohellohellohellohellohellohellohello', ['ok', 'cancel'])
-//    });
-//  }, 3000)
-// });
