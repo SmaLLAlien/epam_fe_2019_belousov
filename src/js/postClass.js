@@ -1,4 +1,5 @@
 import {updatePost} from './updateArticle';
+import './modal';
 
 export class Post {
   constructor(obj) {

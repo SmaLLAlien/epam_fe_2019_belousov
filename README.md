@@ -1,9 +1,7 @@
-
-** all main changes you can find in server/api and server/lib/mongoose. I implement adding articles to bd from starting server to make it easy for testing some features**
-**You need to install mongodb and run it before starting project and server**
+** all main changes you can find in js/app/app.js.**
 ###### 1. Clone this repositorie to your disk
 ```
-git clone https://github.com/SmaLLAlien/epam_fe_2019_belousov.git -b HW25-Mongo --single-branch
+git clone https://github.com/SmaLLAlien/epam_fe_2019_belousov.git -b HW26-Patterns --single-branch
 
 ```
 ###### 2. Go inside project folder

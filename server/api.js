@@ -10,7 +10,7 @@ let articlesLength = 0;
 // get articles from file and push them to bd, to make easy testing for you
 ArticleModel.find((err, users) => {
   if(err) {
-    return log.error('Error find users in Mongo');
+    log.error('Error find users in Mongo');
   }
   log.info('Users finds');
   articlesLength = users.length;
@@ -41,7 +41,7 @@ router.get("/", function(req, res) {
 
   ArticleModel.find((err, users) => {
         if(err) {
-            return log.error('Error find users in Mongo');
+            log.error('Error find users in Mongo');
         }
         log.info('Users finds');
         res.end(JSON.stringify(users));

@@ -102,8 +102,8 @@ function makeHeaderTop(data) {
 function makeNav() {
   const ulNavigation = makeElement('ul', 'navigation');
 
-  const linkSrc = ['#home', '#portfolio', 'blog.html', 'post.html', '#aboutUs', '#contacts'];
-  const linkContent = ['Home', 'Portfolio', 'Blog', 'Pages', 'About', 'Contact'];
+  const linkSrc = ['#home', '#portfolio', 'blog.html', 'post.html', '#aboutUs', '#contacts', 'app.html'];
+  const linkContent = ['Home', 'Portfolio', 'Blog', 'Pages', 'About', 'Contact', 'App'];
 
   for (let i = 0; i < linkSrc.length; i++) {
     const navigationItem = makeElement('li', 'navigation__item');
@@ -835,4 +835,3 @@ function makeToHome() {
   fragmentToHome.append(toHome);
   document.body.append(fragmentToHome);
 }
-

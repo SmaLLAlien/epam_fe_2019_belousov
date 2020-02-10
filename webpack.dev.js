@@ -54,5 +54,10 @@ module.exports = merge(common, {
       filename: 'post.html',
       chunks: ['post'],
     }),
+    new HtmlWebpackPlugin({
+      template: './src/app.html',
+      filename: 'app.html',
+      chunks: ['app'],
+    }),
   ],
 });

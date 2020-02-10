@@ -78,6 +78,37 @@ module.exports = function (config) {
               presets: ['@babel/preset-env'],
             },
           },
+          {
+            test: /\.scss$/,
+            loaders: [
+              'style-loader',
+              'css-loader',
+              'sass-loader',
+            ],
+            // exclude: [helpers.root('src/index.html')]
+          },
+          {
+            test: /\.(png|svg|jpg|gif)$/,
+            exclude: /node_modules/,
+            use: {
+              loader: 'file-loader',
+              options: {
+                name: '[path][name].[ext]',
+                context: 'src',
+              },
+            },
+          },
+          {
+            test: /\.(eot|ttf|woff|woff2)$/,
+            exclude: /node_modules/,
+            use: {
+              loader: 'file-loader',
+              options: {
+                name: '[path][name].[ext]',
+                context: 'src',
+              },
+            },
+          },
         ],
       },
     },

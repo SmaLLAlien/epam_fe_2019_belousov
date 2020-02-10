@@ -7,6 +7,7 @@ module.exports = {
     home: './src/js/home/home.js',
     blog: './src/js/blog/blog.js',
     post: './src/js/post/post.js',
+    app: './src/js/app/app.js',
   },
   output: {
     filename: 'js/[name]/[name].bundle.js',
