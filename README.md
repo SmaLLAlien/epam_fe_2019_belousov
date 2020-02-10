@@ -1,7 +1,7 @@
-** all main changes you can find in js/app/app.js.**
+** all main changes you can find in src/order.spec.js && src/pizza.spec.js**
 ###### 1. Clone this repositorie to your disk
 ```
-git clone https://github.com/SmaLLAlien/epam_fe_2019_belousov.git -b HW26-Patterns --single-branch
+git clone https://github.com/SmaLLAlien/epam_fe_2019_belousov.git -b HW28-Unit-tests --single-branch
 
 ```
 ###### 2. Go inside project folder
@@ -12,32 +12,14 @@ cd epam_fe_2019_belousov
 ```
 npm install
 ```
-###### 4. go to server folder
-
+###### 4. run tests
 ```
-cd server
-```
-###### 5. install packges
-```
-npm install
-```
-###### 6. run server
-```
-npm start
-```
-###### 7. go to project root folder
-```
-cd ../
-```
-###### 8. open project with webstorm (or you have to run server) 
-###### 9. run build or dev mode
-```
-npm run build | npm run dev
+npm run test
 ```
 
-###### 10. if you run build, open index.html from dist/
+###### 5. You can watch results in console, and open coverage from coverage/Chrome/index.html
 
-** TO MAKE IT WORK, PLEASE RUN SERVER, IF YOU DONT USE WEBSTORM **
+
 
 
 
