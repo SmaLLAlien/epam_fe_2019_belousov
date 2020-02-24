@@ -1,0 +1,101 @@
+$backgroundForm: #fff;
+$color: darkgray;
+
+@mixin formPart($width) {
+  width: $width;
+  margin-bottom: 20px;
+
+  &__field {
+    width: 100%;
+    border-radius: 5px;
+    outline: none;
+    line-height: 1.5em;
+    font-size: 1.5em;
+    padding-left: 20px;
+    color: $color;
+  }
+}
+
+@mixin button {
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 15px;
+}
+
+.add-form {
+  width: 80%;
+  margin: 0 auto;
+  background: $backgroundForm;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 20px;
+
+  &__caption {
+    align-self: flex-start;
+  }
+}
+
+.title {
+  @include formPart(100%);
+}
+
+.description {
+  @include formPart(100%);
+
+  &__field {
+    resize: vertical;
+  }
+}
+
+.duration {
+  @include formPart(30%);
+
+  align-self: flex-start;
+}
+
+.date {
+  @include formPart(30%);
+
+  align-self: flex-start;
+}
+
+.author {
+  @include formPart(100%);
+
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.buttons {
+  align-self: flex-end;
+
+  &__cancel {
+    background: lightgray;
+    @include button;
+    margin-right: 20px;
+  }
+
+  &__cancel:hover {
+    transition: 0.2s;
+    background: orange;
+    color: #fff;
+  }
+
+  &__save {
+    background: darken($color, 40%);
+    color: #fff;
+    @include button;
+  }
+
+  &__save:hover {
+    transition: 0.2s;
+    background: green;
+  }
+}
