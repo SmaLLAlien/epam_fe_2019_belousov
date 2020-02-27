@@ -1,0 +1,139 @@
+@import "~node_modules/bootstrap/scss/functions";
+@import "~node_modules/bootstrap/scss/variables";
+@import "~node_modules/bootstrap/scss/mixins";
+@import "~node_modules/bootstrap/scss/grid";
+
+$courseBackground: #fff;
+$backgroundColor: #007bff;
+$buttonTextColor: #fff;
+$textColor: #000;
+
+
+.course {
+  width: 100%;
+  background: $courseBackground;
+  border-radius: 5px;
+  display: flex;
+  padding: 10px 10px 25px 10px;
+  margin-bottom: 20px;
+
+
+  &__content {
+    @include make-col-ready();
+    @include make-col(8);
+
+    @include media-breakpoint-up(xs) {
+      @include make-col(12);
+    }
+    @include media-breakpoint-up(md) {
+      @include make-col(9);
+    }
+    padding: 0;
+  }
+
+  &__head {
+    @include make-row();
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  &__header {
+    @include make-col-ready();
+    @include media-breakpoint-up(xs) {
+      @include make-col(12);
+    }
+    @include media-breakpoint-up(md) {
+      @include make-col(8);
+    }
+
+    color: $textColor;
+    font-weight: 600;
+    font-size: 1.3em;
+  }
+
+  &__info {
+    @include make-col-ready();
+    @include media-breakpoint-up(xs) {
+      @include make-col(12);
+    }
+    @include media-breakpoint-up(md) {
+      @include make-col(4);
+    }
+
+    display: flex;
+  }
+
+  &__time {
+    margin-right: 10px;
+    color: lighten($textColor, 50%);
+  }
+
+  &__date {
+    color: lighten($textColor, 50%);
+  }
+
+  &__text {
+    @include make-col-ready();
+    @include make-col(4);
+    @include media-breakpoint-up(xs) {
+      @include make-col(12);
+    }
+    @include media-breakpoint-up(md) {
+      @include make-col(11);
+    }
+
+    padding: 0;
+    margin: 0;
+    color: lighten($textColor, 40%);
+  }
+
+  &__controls {
+    @include make-col-ready();
+    @include media-breakpoint-up(md) {
+      @include make-col(3);
+    }
+    @include media-breakpoint-up(xs) {
+      @include make-col(12);
+    }
+
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    align-self: center;
+  }
+
+  &__edit,
+  &__delete {
+    background: $backgroundColor;
+    color: $buttonTextColor;
+    padding: 5px 20px;
+    border-radius: 5px;
+    margin-right: 20px;
+    outline: none;
+    border: none;
+  }
+
+  &__edit:hover {
+    transition: 0.2s;
+    background: orange;
+  }
+
+  &__delete:hover {
+    transition: 0.2s;
+    background: red;
+  }
+}
+
+.course:hover {
+  transition: 0.5s;
+  box-shadow: 0 0 21px -5px rgba(0,0,0,0.75);
+}
+
+@media all and (max-width: 768px){
+  .course {
+    display: flex;
+    flex-direction: column;
+  }
+}

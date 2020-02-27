@@ -1,0 +1,30 @@
+<div class="search">
+  <app-search></app-search>
+</div>
+
+<div class="add">
+  <button class="add__course" [routerLink]="['./add']">
+    <span class="add__icon"><i class="fas fa-plus"></i></span>
+    Add course
+  </button>
+</div>
+
+<div class="courses">
+
+  <app-course-item
+    *ngFor="let course of courses"
+    [course]="course"
+    (deleted)="onDelete($event)"></app-course-item>
+
+  <div class="courses__error"
+       *ngIf="error">
+    <p class="courses__information">{{ error }}</p>
+    <button
+      class="error"
+      (click)="onErrorHandle()">Ok</button>
+  </div>
+
+  <button class="load-more">
+    Load More
+  </button>
+</div>
