@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {switchMap} from "rxjs/operators";
+import {switchMap} from 'rxjs/operators';
 
-import {Course} from "../../../core/models/course.model";
-import {CourseService} from "../../services/course.service";
+import {Course} from '../../../core/models/course.model';
+import {CourseService} from '../../services/course.service';
 
 @Component({
   selector: 'app-courses',
@@ -20,7 +20,7 @@ export class CoursesComponent implements OnInit {
       courses => {
       this.courses = courses;
     },
-      error => this.error = 'Request is failure, please try again later')
+      error => this.error = 'Request is failure, please try again later');
   }
 
   onDelete(id: number) {

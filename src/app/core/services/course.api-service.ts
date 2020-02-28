@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpErrorResponse} from "@angular/common/http";
-import {Observable, Subject, throwError} from "rxjs";
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import {Observable, Subject, throwError} from 'rxjs';
 
-import {Course} from "../models/course.model";
-import {catchError, retry} from "rxjs/operators";
+import {Course} from '../models/course.model';
+import {catchError, retry} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,7 @@ export class CourseApiService {
 
   constructor(private http: HttpClient) {}
 
-  getCourses():Observable<Course[]> {
+  getCourses(): Observable<Course[]> {
     return this.http.get<Course[]>(`${this.BASE_URL}/${this.url}`)
       .pipe(
         retry(1),
@@ -24,7 +24,7 @@ export class CourseApiService {
       );
   }
 
-  deleteCourse(id:number):Observable<{}> {
+  deleteCourse(id: number): Observable<{}> {
     return this.http.delete(`${this.BASE_URL}/${this.url}/${id}`)
       .pipe(
         retry(1),

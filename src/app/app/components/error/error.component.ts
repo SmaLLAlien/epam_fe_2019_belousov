@@ -12,7 +12,7 @@ export class ErrorComponent implements OnInit, AfterViewInit, OnDestroy  {
   ngOnInit(): void {
   }
 
-  ngAfterViewInit(){
+  ngAfterViewInit() {
     this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#000';
   }
 

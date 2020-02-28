@@ -3,5 +3,5 @@ export interface Course {
   title: string;
   content: string;
   time: string;
-  date: string
+  date: string;
 }
