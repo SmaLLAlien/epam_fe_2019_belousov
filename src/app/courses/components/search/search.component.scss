@@ -1,0 +1,36 @@
+@import "~node_modules/bootstrap/scss/functions";
+@import "~node_modules/bootstrap/scss/variables";
+@import "~node_modules/bootstrap/scss/mixins";
+@import "~node_modules/bootstrap/scss/grid";
+
+.search {
+  position: relative;
+  @include make-col-ready();
+  @include media-breakpoint-up(xs) {
+    @include make-col(12);
+  }
+  @include media-breakpoint-up(md) {
+    @include make-col(4);
+  }
+
+  &__icon {
+    position: absolute;
+    font-size: 1.4em;
+    color: gray;
+    top: 10px;
+    left: 20px;
+    transform: scaleX(-1);
+  }
+
+  &__field {
+    width: 100%;
+    line-height: 1.5em;
+    font-size: 1.5em;
+    outline: none;
+    border-radius: 5px;
+    vertical-align: center;
+    padding-left: 30px;
+    height: 50px;
+  }
+
+}

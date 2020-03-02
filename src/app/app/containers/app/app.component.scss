@@ -1,0 +1,25 @@
+$backgroundColor: #414452;
+
+.wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 140px);
+  min-width: 480px;
+}
+
+.header,
+.footer {
+  background: $backgroundColor;
+}
+
+.inner-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  min-width: 480px;
+}
+
+.main {
+  flex-grow: 1;
+}

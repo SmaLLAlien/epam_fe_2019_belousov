@@ -1,0 +1,18 @@
+<div class="course" appHighlight [courseDate] = "course.date">
+  <div class="course__content">
+    <div class="course__head">
+      <div class="course__header">{{ course.title }}</div>
+      <div class="course__info">
+        <div class="course__time"><i class="far fa-clock"></i> {{ course.time | toHours}}</div>
+        <div class="course__date"><i class="far fa-calendar-alt"></i> {{ course.date }}</div>
+      </div>
+    </div>
+    <div class="course__text">
+      {{ course.content }}
+    </div>
+  </div>
+  <div class="course__controls">
+    <button class="course__edit"><i class="fas fa-pencil-alt"></i> Edit</button>
+    <button class="course__delete" (click)="onDelete()"><i class="fas fa-trash"></i> Delete</button>
+  </div>
+</div>

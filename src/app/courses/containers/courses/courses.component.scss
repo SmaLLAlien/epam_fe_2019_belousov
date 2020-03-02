@@ -1,0 +1,85 @@
+@import "~node_modules/bootstrap/scss/functions";
+@import "~node_modules/bootstrap/scss/variables";
+@import "~node_modules/bootstrap/scss/mixins";
+@import "~node_modules/bootstrap/scss/grid";
+
+$backgroundColor: #007bff;
+$buttonTextColor: #fff;
+$loadMoreColor: #007bff;
+
+.search {
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+
+.add {
+  @include make-col-ready();
+  @include make-col(4);
+
+  @include media-breakpoint-up(xs) {
+    @include make-col(12);
+  }
+  @include media-breakpoint-up(md) {
+    @include make-col(4);
+    @include make-col-offset(8);
+  }
+
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+
+  &__course {
+    outline: none;
+    border: none;
+    background: $backgroundColor;
+    color: $buttonTextColor;
+    padding: 10px 30px;
+    border-radius: 5px;
+  }
+  &__course:hover {
+    box-shadow: 0 0 1px 1px $backgroundColor;
+  }
+}
+
+.courses {
+  width: 100%;
+  @include make-container();
+
+
+  &__error {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 50px;
+  }
+
+  &__information {
+    text-align: center;
+    color: orange;
+  }
+
+  .error {
+    background: $backgroundColor;
+    color: $buttonTextColor;
+    padding: 5px 20px;
+    border-radius: 5px;
+    margin-right: 20px;
+    outline: none;
+    border: none;
+    max-width: 70px;
+    align-self: center;
+  }
+}
+
+
+.load-more {
+  width: 100%;
+  cursor: pointer;
+  background: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  color: $loadMoreColor;
+}
+

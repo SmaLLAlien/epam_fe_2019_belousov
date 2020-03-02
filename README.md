@@ -1,25 +1,22 @@
+# H32
 
-###### 1. Clone this repositorie to you disk
+**Main changes are in core/, shared/, courses/. Backup db.json data, you can find in  db_backup.json**
+
+
+1. Clone this repositorie to your disk
 ```
-git clone 
+git clone https://github.com/SmaLLAlien/epam_fe_2019_belousov.git -b HW32-Angular --single-branch
 ```
-###### 2. Go inside project folder
+2. Go inside project folder
 ```
 cd epam_fe_2019_belousov
 ```
-###### 3. Initialize
+3. Initialize
 ```
 npm install
 ```
-###### 4. go to server folder and run 
+4. Run json-server with delay to see loader
 ```
-npm install
+json-server --watch --delay=1000 db.json
 ```
-###### 5. run server
-```
-npm start
-```
-###### 6. go back to HW21-BOM and open inex.html
-** TO MAKE IT WORK, PLEASE RUN SERVER, IF YOU DONT USE WEBSTORM **
-
-
+5. Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`.

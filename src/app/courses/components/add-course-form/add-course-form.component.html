@@ -1,0 +1,35 @@
+<form class="add-form">
+<h3 class="add-form__caption">New course</h3>
+  <div class="title">
+    <label for="title" class="title__label">Title:</label>
+    <input type="text" class="title__field" id="title" placeholder="Some title" required />
+  </div>
+
+  <div class="description">
+    <label for="description" class="description__label">Description:</label>
+    <textarea class="description__field" id="description" placeholder="Description" required></textarea>
+  </div>
+
+  <div class="duration">
+    <label for="duration" class="dduration__label">Duration:</label>
+    <input type="number" value="0" min="0" class="duration__field" id="duration" placeholder="0" required />
+  </div>
+
+  <div class="date">
+    <label for="date" class="date__label">Date:</label>
+    <input type="date" class="date__field" id="date" placeholder="18.02.2020" #dateField required />
+  </div>
+
+  <div class="author">
+    <label for="author" class="author__label">Authors:</label>
+    <select name="author" id="author" class="author__field">
+      <option>Author1</option>
+      <option>Author2</option>
+    </select>
+  </div>
+
+  <div class="buttons">
+    <button class="buttons__cancel" [routerLink]="['../']">Cancel</button>
+    <button class="buttons__save">Save</button>
+  </div>
+</form>

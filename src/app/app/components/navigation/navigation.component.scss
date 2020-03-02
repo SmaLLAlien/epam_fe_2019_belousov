@@ -1,0 +1,33 @@
+$textLinkCOlor: #fff;
+
+.navigation {
+  width: 100%;
+  height: 70px;
+
+  &__list {
+    list-style-type: none;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%;
+  }
+
+  &__item {
+    margin-right: 50px;
+    text-transform: capitalize;
+    font-size: 1.2em;
+    cursor: pointer;
+  }
+
+  &__link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    color: $textLinkCOlor;
+    text-decoration: none;
+  }
+
+  &__active {
+    border-bottom: 2px solid #fff;
+  }
+}
