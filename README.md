@@ -1,7 +1,5 @@
 # H32
 
-**Main changes are in core/, shared/, courses/. Backup db.json data, you can find in  db_backup.json**
-
 
 1. Clone this repositorie to your disk
 ```

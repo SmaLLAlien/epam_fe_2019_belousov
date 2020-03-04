@@ -1,9 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable, throwError} from 'rxjs';
+import {Observable} from 'rxjs';
 
 import {Course} from '../../models/course.model';
-import {catchError, retry} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -17,29 +16,10 @@ export class CourseApiService {
   constructor(private http: HttpClient) {}
 
   getCourses(): Observable<Course[]> {
-    return this.http.get<Course[]>(`${this.BASE_URL}/${this.url}`)
-      .pipe(
-        retry(1),
-        // catchError(this.handleError)
-      );
+    return this.http.get<Course[]>(`${this.BASE_URL}/${this.url}`);
   }
 
   deleteCourse(id: number): Observable<{}> {
-    return this.http.delete(`${this.BASE_URL}/${this.url}/${id}`)
-      .pipe(
-        retry(1),
-        // catchError(this.handleError)
-      );
+    return this.http.delete(`${this.BASE_URL}/${this.url}/${id}`);
   }
-
-  handleError(error) {
-    let errorMessage = '';
-    if (error.error instanceof ErrorEvent) {
-      errorMessage = `Error: ${error.error.message}`;
-    } else {
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-    }
-    return throwError(errorMessage);
-  }
-
 }

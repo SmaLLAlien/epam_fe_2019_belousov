@@ -16,14 +16,11 @@
     [course]="course"
     (deleted)="onDelete($event)"></app-course-item>
 
-  <div class="courses__error"
-       *ngIf="error">
-    <p class="courses__information">Request is failure with:</p>
-    <p class="courses__information"> {{ error }} </p>
-    <p class="courses__information">Please try again later</p>
-    <button
-      class="error"
-      (click)="onErrorHandle()">Ok</button>
+
+  <div class="courses__error" *ngIf="error">
+    <app-error-dialog
+      [error]="error"
+      (closeDialog)="closeError()"></app-error-dialog>
   </div>
 
   <button class="load-more">

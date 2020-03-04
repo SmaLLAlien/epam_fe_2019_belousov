@@ -5,14 +5,15 @@ import {
   HttpEvent,
   HttpInterceptor, HttpEventType, HttpErrorResponse
 } from '@angular/common/http';
-import {Observable, throwError} from 'rxjs';
+import {EMPTY, Observable, throwError} from 'rxjs';
 import {LoaderService} from '../services/loader/loader.service';
-import {catchError, tap} from 'rxjs/operators';
+import {catchError, retry, tap} from 'rxjs/operators';
+import {ErrorDialogService} from '../services/error-dialog/error-dialog.service';
 
 @Injectable()
 export class LoaderInterceptorInterceptor implements HttpInterceptor {
 
-  constructor(private loaderService: LoaderService) {}
+  constructor(private loaderService: LoaderService, private errorDialogService: ErrorDialogService) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     this.loaderService.show();
@@ -22,20 +23,12 @@ export class LoaderInterceptorInterceptor implements HttpInterceptor {
           this.loaderService.hide();
         }
       }),
+      retry(1),
       catchError((error: HttpErrorResponse) => {
         this.loaderService.hide();
-        return this.handleError(error);
+        this.errorDialogService.openDialog(error);
+        return EMPTY;
       })
     );
-  }
-
-  handleError(error: HttpErrorResponse) {
-    let errorMessage = '';
-    if (error.error instanceof ErrorEvent) {
-      errorMessage = `Error: ${error.error.message}`;
-    } else {
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-    }
-    return throwError(errorMessage);
   }
 }

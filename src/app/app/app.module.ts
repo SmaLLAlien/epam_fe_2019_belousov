@@ -8,7 +8,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { LogoComponent } from './components/logo/logo.component';
-import { ErrorComponent } from './components/error/error.component';
+import { ErrorPageComponent } from './components/error-page/error-page.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import {LoaderInterceptorInterceptor} from '../core/interceptors/loader-interceptor.interceptor';
 
@@ -21,7 +21,7 @@ import {LoaderInterceptorInterceptor} from '../core/interceptors/loader-intercep
     FooterComponent,
     NavigationComponent,
     LogoComponent,
-    ErrorComponent,
+    ErrorPageComponent,
     LoaderComponent
   ],
   imports: [

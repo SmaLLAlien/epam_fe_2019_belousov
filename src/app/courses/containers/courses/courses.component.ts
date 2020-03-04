@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {catchError, tap} from 'rxjs/operators';
+import {tap} from 'rxjs/operators';
 
 import {Course} from '../../../core/models/course.model';
 import {CourseService} from '../../services/course.service';
+import {ErrorDialogService} from '../../../core/services/error-dialog/error-dialog.service';
+import {Error} from '../../../core/models/error.model';
+
 
 @Component({
   selector: 'app-courses',
@@ -11,32 +14,32 @@ import {CourseService} from '../../services/course.service';
 })
 export class CoursesComponent implements OnInit {
   courses: Course[];
-  error: string;
+  error: Error;
 
-  constructor(private courseService: CourseService) { }
+  constructor(private courseService: CourseService, private errorDialogService: ErrorDialogService) { }
 
   ngOnInit(): void {
-    this.courseService.loadCourses().pipe(
-      catchError(error => this.error = error)
-    ).subscribe();
+    this.courseService.loadCourses().subscribe();
 
     this.courseService.course.pipe(
       tap(courses => this.courses = courses),
+    ).subscribe();
+
+    this.errorDialogService.errorSend.pipe(
+      tap(error =>  this.error = error)
     ).subscribe();
   }
 
 
   onDelete(id: number) {
-    this.courseService.removeCourseById(id).pipe(
-      catchError(error => this.error = error)
-    ).subscribe();
+    this.courseService.removeCourseById(id).subscribe();
 
     this.courseService.course.pipe(
       tap(courses => this.courses = courses)
     ).subscribe();
   }
 
-  onErrorHandle() {
-    this.error = null;
+  closeError() {
+    this.errorDialogService.closeDialog();
   }
 }
