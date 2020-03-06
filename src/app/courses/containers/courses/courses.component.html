@@ -1,0 +1,37 @@
+<div class="search">
+  <app-search (userSearch)="findCourseFromSearch($event)"></app-search>
+</div>
+
+<div class="add">
+  <button class="add__course" [routerLink]="['./add']">
+    <span class="add__icon"><i class="fas fa-plus"></i></span>
+    Add course
+  </button>
+</div>
+
+<div class="courses">
+
+
+  <ng-container *ngIf="loaded else noCourse">
+    <app-course-item
+      *ngFor="let course of courses"
+      [course]="course"
+      (deleted)="onDelete($event)"
+      (edited)="onEdit($event)"></app-course-item>
+  </ng-container>
+  <ng-template #noCourse>
+    <div class="courses__absent">
+      Courses not found
+    </div>
+  </ng-template>
+
+  <div class="courses__error" *ngIf="error">
+    <app-error-dialog
+      [error]="error"
+      (closeDialog)="closeError()"></app-error-dialog>
+  </div>
+
+  <button class="load-more">
+    Load More
+  </button>
+</div>
