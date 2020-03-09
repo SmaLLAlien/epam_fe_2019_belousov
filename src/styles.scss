@@ -1,0 +1,22 @@
+/* You can add global styles to this file, and also import other style files */
+$fa-font-path: "../node_modules/@fortawesome/fontawesome-free/webfonts";
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/brands";
+@import "~@fortawesome/fontawesome-free/scss/regular";
+@import "~@fortawesome/fontawesome-free/scss/solid";
+@import "~@fortawesome/fontawesome-free/scss/v4-shims";
+
+body {
+  background: lightgray;
+}
+
+form {
+  .ng-invalid.ng-touched {
+    border-left: 5px solid #a91a32;
+    transition: 0.3s;
+  }
+  .ng-valid {
+    border-left: 5px solid #0b963f;
+  }
+
+}

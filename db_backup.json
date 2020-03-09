@@ -1,0 +1,39 @@
+{
+  "courses": [
+    {
+      "id": "1",
+      "title": "DUIS MOLLIT REPREHENDERIT AD",
+      "content": "Est minim ea aute sunt laborum minim eu excepteur. Culpa sint exerctation mollt enim ad culpa aliquip laborum cillum. Dolor officia ‘culpa labore ex eiusmod ut est ea voluptate ea nostrud.",
+      "time": "97min",
+      "date": "28 Sep, 2017"
+    },
+    {
+      "id": "2",
+      "title": "MAGNA EXCEPTEUR AUTE DESERUNT",
+      "content": "Sunt culpa officia minim commodo eiusmod irure sunt nostrud. Mollt aliquip id occaecat officia proident anim dolor oficia qui voluptate ‘consectetur laborum. Duis incididunt culpa aliqua mollt do fugiat ea dolor mollit irure Lorem tempor.",
+      "time": "207min",
+      "date": "31 May, 2016"
+    },
+    {
+      "id": "3",
+      "title": "MAGNA EXCEPTEUR AUTE DESERUNT",
+      "content": "Sunt culpa officia minim commodo eiusmod irure sunt nostrud. Mollt aliquip id occaecat officia proident anim dolor oficia qui voluptate ‘consectetur laborum. Duis incididunt culpa aliqua mollt do fugiat ea dolor mollit irure Lorem tempor.",
+      "time": "207min",
+      "date": "31 May, 2016"
+    },
+    {
+      "id": "4",
+      "title": "MAGNA EXCEPTEUR AUTE DESERUNT",
+      "content": "Sunt culpa officia minim commodo eiusmod irure sunt nostrud. Mollt aliquip id occaecat officia proident anim dolor oficia qui voluptate ‘consectetur laborum. Duis incididunt culpa aliqua mollt do fugiat ea dolor mollit irure Lorem tempor.",
+      "time": "207min",
+      "date": "01 Mar, 2020"
+    },
+    {
+      "id": "5",
+      "title": "MAGNA EXCEPTEUR AUTE DESERUNT",
+      "content": "Sunt culpa officia minim commodo eiusmod irure sunt nostrud. Mollt aliquip id occaecat officia proident anim dolor oficia qui voluptate ‘consectetur laborum. Duis incididunt culpa aliqua mollt do fugiat ea dolor mollit irure Lorem tempor.",
+      "time": "207min",
+      "date": "28 Feb, 2020"
+    }
+  ]
+}
