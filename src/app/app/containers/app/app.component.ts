@@ -1,6 +1,6 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {LoaderService} from '../../../core/services/loader/loader.service';
-import {tap} from 'rxjs/operators';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -9,18 +9,13 @@ import {tap} from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnInit {
-  obj = {isResponseOn: false};
+  subscription: Observable<boolean>;
 
-  constructor(private loaderService: LoaderService, private cdRef: ChangeDetectorRef) {
+  constructor(private loaderService: LoaderService) {
   }
 
   ngOnInit(): void {
-    this.loaderService.loader.pipe(
-      tap(show => {
-        this.obj.isResponseOn = show;
-        this.cdRef.detectChanges();
-      })
-    ).subscribe();
+    this.subscription = this.loaderService.loader;
   }
 
 

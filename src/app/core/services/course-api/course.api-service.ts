@@ -21,7 +21,7 @@ export class CourseApiService {
       return this.http.get<Course[]>(`${this.BASE_URL}/${this.url}`, {params: {title_like: `${title}`}});
     }
     if (end) {
-      return this.http.get<Course[]>(`${this.BASE_URL}/${this.url}`, {params: {_start: '0', _end: `${++this.end}`}});
+      return this.http.get<Course[]>(`${this.BASE_URL}/${this.url}`, {params: {_start: '0', _end: `${this.end++}`}});
     }
     return this.http.get<Course[]>(`${this.BASE_URL}/${this.url}`, {params: {_start: '0', _end: `${this.end}`}});
   }

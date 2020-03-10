@@ -17,4 +17,4 @@
   </div>
 </footer>
 
-<app-loader *ngIf="obj.isResponseOn"></app-loader>
+<app-loader *ngIf="subscription | async"></app-loader>
