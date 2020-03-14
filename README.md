@@ -1,25 +1,26 @@
+# H35
 
-###### 1. Clone this repositorie to you disk
+
+
+1. Clone this repository to your disk
 ```
-git clone 
+git clone https://github.com/SmaLLAlien/epam_fe_2019_belousov.git -b HW35-Angular-tests --single-branch
 ```
-###### 2. Go inside project folder
+2. Go inside project folder
 ```
 cd epam_fe_2019_belousov
 ```
-###### 3. Initialize
+3. Initialize
 ```
 npm install
 ```
-###### 4. go to server folder and run 
+4. Run json-server
 ```
-npm install
+json-server --watch --delay=500  db.json
 ```
-###### 5. run server
+5. Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`.
+6. Run tests 
 ```
-npm start
+ng test --codeCoverage=true
 ```
-###### 6. go back to HW21-BOM and open inex.html
-** TO MAKE IT WORK, PLEASE RUN SERVER, IF YOU DONT USE WEBSTORM **
-
-
+7. Open index.html from coverage/hw/

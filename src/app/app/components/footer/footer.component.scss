@@ -1,0 +1,24 @@
+@import "~node_modules/bootstrap/scss/functions";
+@import "~node_modules/bootstrap/scss/variables";
+@import "~node_modules/bootstrap/scss/mixins";
+@import "~node_modules/bootstrap/scss/grid";
+
+$backgroundColor: #414452;
+$textColor: #fff;
+
+
+.footer {
+  width: 100%;
+  height: 70px;
+  background: $backgroundColor;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  @include make-container();
+
+  &__rights {
+    font-size: 1.2em;
+    color: $textColor;
+  }
+}

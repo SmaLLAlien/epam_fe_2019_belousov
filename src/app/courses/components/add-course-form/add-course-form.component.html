@@ -1,0 +1,80 @@
+<form class="add-form" [formGroup]="courseForm" >
+<h3 class="add-form__caption">{{allowEdit ? 'Edit course' : 'New course'}} </h3>
+  <div class="title">
+    <label for="title" class="title__label">Title*:</label>
+    <input type="text"
+           class="title__field"
+           id="title"
+           placeholder="Some title"
+           formControlName="title"/>
+    <div class="errors" *ngIf="title.invalid && title.touched">
+      <span *ngIf="title.errors?.required">required</span>
+      <span *ngIf="title.errors?.maxlength">Title should contain no more 50 symbols</span>
+    </div>
+  </div>
+
+
+  <div class="description">
+    <label for="description" class="description__label">Description*:</label>
+    <textarea class="description__field"
+              id="description"
+              placeholder="Description"
+              formControlName="description"></textarea>
+    <div class="errors" *ngIf="description.invalid && description.touched">
+      <span *ngIf="description.errors?.required">required</span>
+      <span *ngIf="description.errors?.maxlength">Description should contain no more 50 symbols</span>
+    </div>
+  </div>
+
+
+  <div class="duration">
+    <label for="duration" class="dduration__label">Duration*:</label>
+    <input type="number"
+           value="0"
+           min="0"
+           class="duration__field"
+           id="duration"
+           placeholder="0"
+           formControlName="time"/>
+    <div class="errors" *ngIf="time.invalid && time.touched">
+      <span *ngIf="time.errors?.range">Time should be in range 1-600</span>
+    </div>
+  </div>
+
+
+  <div class="date">
+    <label for="date" class="date__label">Date*:</label>
+    <input type="text"
+           class="date__field"
+           id="date"
+           placeholder="18.02.2020"
+           #dateField
+           formControlName="date"/>
+    <div class="errors" *ngIf="date.invalid && date.touched">
+      <span *ngIf="date.errors?.date">Date should has format MM/DD/YYYY</span>
+    </div>
+  </div>
+
+
+  <div class="author">
+    <label for="author" class="author__label">Authors*:</label>
+    <select name="author"
+            id="author"
+            class="author__field"
+            formControlName="author">
+      <option>Author1</option>
+      <option>Author2</option>
+    </select>
+    <div class="errors" *ngIf="author.invalid && author.touched">
+      <span *ngIf="author.errors?.required">required</span>
+    </div>
+  </div>
+
+
+  <div class="buttons">
+    <button class="buttons__cancel" [routerLink]="['../']">Cancel</button>
+    <button class="buttons__save"
+            (click)="submit()"
+            [disabled] = 'courseForm.invalid' >{{ allowEdit ? 'Edit' : 'Save' }}</button>
+  </div>
+</form>

@@ -1,0 +1,7 @@
+.error {
+  width: 100%;
+  height: calc(100vh - 140px);
+  background: url("~src/assets/404.jpg") no-repeat center center/ cover;
+
+  box-shadow: 0 0 10px 10px black inset;
+}

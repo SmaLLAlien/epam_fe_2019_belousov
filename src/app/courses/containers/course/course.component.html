@@ -1,0 +1,5 @@
+<div class="course">
+  <div class="wrapper">
+    <app-add-course-form (course)="sendCourse($event)" [item]="(course | async)"></app-add-course-form>
+  </div>
+</div>
